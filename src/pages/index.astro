@@ -58,11 +58,7 @@ const body = 'text-lg font-medium leading-[1.5]';
 
 <Base>
   {/* Hero: the headline, its echo, then a ruled deck */}
-  <section class="frame overflow-x-clip pb-48 pt-32 md:pb-96 md:pt-72" aria-labelledby="hero-title">
-    <div class="label flex justify-between gap-24 pb-24 text-[11px] md:pb-40 md:text-[13px]">
-      <p>(00) Local search for your Mac</p>
-      <p class="hidden text-grey md:block">Mail · WhatsApp · iMessage · PDFs · Calendar</p>
-    </div>
+  <section class="frame overflow-x-clip pb-48 pt-40 md:pb-96 md:pt-96" aria-labelledby="hero-title">
     <div class="isolate text-hero font-extrabold">
       <h1 id="hero-title" class="relative z-10">
         Everything<br /> you’ve written,
@@ -82,7 +78,7 @@ const body = 'text-lg font-medium leading-[1.5]';
 
   {/* 01 Search */}
   <section id="search" class={section} aria-labelledby="search-title">
-    <SectionLabel number="01" title="Every word counts" aside="Search" id="search-title" />
+    <SectionLabel title="Every word counts" aside="Search" id="search-title" />
     <p class="flex items-center overflow-hidden whitespace-nowrap pb-16 pt-24 font-mono text-query font-medium md:pb-24 md:pt-48" role="img" aria-label="A search for “fferte”, which also finds “Offerte”">
       <span class="opacity-12" aria-hidden="true">O</span><span aria-hidden="true">fferte</span>
       <span class="caret ml-[0.04em] h-[0.85em] w-[0.07em] shrink-0 bg-accent" aria-hidden="true"></span>
@@ -123,7 +119,7 @@ const body = 'text-lg font-medium leading-[1.5]';
 
   {/* 02 Sources */}
   <section id="sources" class={section} aria-labelledby="sources-title">
-    <SectionLabel number="02" title="One list, newest first" aside="Sources" id="sources-title" />
+    <SectionLabel title="One list, newest first" aside="Sources" id="sources-title" />
     <ol class="isolate pt-16 md:pt-24">
       {
         sources.map((s, i) => (
@@ -157,7 +153,7 @@ const body = 'text-lg font-medium leading-[1.5]';
   {/* 03 Privacy: the one full-bleed block */}
   <section id="privacy" class="mt-96 bg-accent text-paper md:mt-120 xl:mt-160" aria-labelledby="privacy-title">
     <div class="frame pb-64 pt-24 md:pb-96">
-      <SectionLabel number="03" title="Private by design" aside="Privacy" id="privacy-title" inverse />
+      <SectionLabel title="Private by design" aside="Privacy" id="privacy-title" inverse />
       <p class="pb-40 pt-40 text-statement font-extrabold md:pb-64 md:pt-48">It stays<br /> on this Mac.</p>
       <div class="grid gap-40 lg:grid-cols-[minmax(0,752px)_minmax(0,1fr)] lg:gap-48">
         <p class="text-lead font-medium">
@@ -181,7 +177,7 @@ const body = 'text-lg font-medium leading-[1.5]';
 
   {/* 04 Assistants (MCP), not built yet: set as an interview */}
   <section id="assistants" class={section} aria-labelledby="assistants-title">
-    <SectionLabel number="04" title="For your AI assistant · MCP" aside="Coming soon" id="assistants-title" />
+    <SectionLabel title="For your AI assistant · MCP" aside="Coming soon" id="assistants-title" />
     <div class="grid gap-56 pt-32 md:pt-48 lg:grid-cols-[416px_minmax(0,1fr)] lg:gap-48">
       <div class="flex flex-col gap-24">
         <h3 class={h3}>Let your assistant look it up.</h3>
@@ -224,7 +220,7 @@ const body = 'text-lg font-medium leading-[1.5]';
 
   {/* 05 Keys */}
   <section id="keys" class={section} aria-labelledby="keys-title">
-    <SectionLabel number="05" title="Made for the keyboard" aside="Never reach for the mouse" id="keys-title" />
+    <SectionLabel title="Made for the keyboard" aside="Never reach for the mouse" id="keys-title" />
     <dl class="grid grid-cols-2 gap-x-24 gap-y-40 pt-32 md:pt-48 lg:grid-cols-4">
       {
         keys.map((k) => (
