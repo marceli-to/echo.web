@@ -1,10 +1,8 @@
 ---
-import { Image } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import ComingSoon from '../components/ComingSoon.astro';
 import Echo from '../components/Echo.astro';
 import SectionLabel from '../components/SectionLabel.astro';
-import appIcon from '../assets/app-icon.png';
 
 // What a search for "fferte" turns up: the match is set in the accent
 const results = [
@@ -245,17 +243,9 @@ const body = 'text-lg font-medium leading-[1.5]';
     </dl>
   </section>
 
-  {/* Close: icon, the echo once more, the button */}
+  {/* Close: the echo once more, the button */}
   <section class="frame overflow-x-clip pb-96 pt-120 md:pb-120 md:pt-200" aria-labelledby="closer-title">
     <div class="flex flex-col gap-32 md:flex-row md:items-end md:gap-48">
-      <Image
-        src={appIcon}
-        alt="The écho app icon: a white serif é on a dark green tile, its accent doubled in blue"
-        width={176}
-        height={176}
-        densities={[1, 2]}
-        class="size-96 shrink-0 md:size-176"
-      />
       <div class="isolate min-w-0 flex-1 text-closer font-extrabold">
         <h2 id="closer-title" class="relative z-10">Find it again.</h2>
         <Echo text="Find it again." steps={[0.16, 0.06]} />
