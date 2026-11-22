@@ -6,6 +6,12 @@ Design: [Figma, page "Landing · Editorial (proposal)", frame 56:33](https://www
 
 ## Done
 
+- **2026-11-22 · Website and MCP briefs, first pass** (`echo-website-brief.md`, `echo-mcp-direction.md`; the parts with no open questions):
+  - Privacy wording: no blanket "nothing leaves your Mac" anywhere. The privacy statement is now "Your index stays on this Mac." The paragraph, privacy page and `llms.txt` say that results an assistant asks for go to its provider. New privacy point "AI only if you say so".
+  - Assistants: "Coming soon" tag removed (MCP is part of the standard licence), Claude Desktop / Claude Code named, rule "Nothing while écho is locked" added.
+  - Sources: Contacts added, iMessage "and SMS", PDFs "scans read with OCR". Search mentions German, French and English.
+  - New FAQ section (data in `site.ts`, also in `llms.txt`), "FAQ" added to the masthead nav.
+  - Checked at 1440 and 360 px.
 - **2026-11-22 · Assistants showcase** (from the brief `echo-showcase.md`): the single Q&A is replaced by two invented chats: Laura Brunner (the calendar says Thursday, WhatsApp says Wednesday) and Thomas Keller (the full picture from calendar and chat). Each one has a caption, the question, a "Searching Calendar, Mail, WhatsApp…" line, then the answer with `event` / `chat` source markers. These aren't real links. The left column stays in view on desktop. The privacy line and a "made up" note sit under the examples. New `AskExample` component plus `answer` / `source` utilities; `llms.txt` mentions the cross-check. Checked at 1440 and 390 px.
 - **2026-11-22 · Deployed** from commit `174c1c3` (redesign, content update, icons, sticky header, Keys, scroll-driven motion, SEO / headers pass). Checked live: HSTS, `nosniff` and `Referrer-Policy` headers sent, `llms.txt` served.
 - **2026-11-22 · SEO / a11y / headers pass** (after a Lighthouse audit: 100 performance, best practices and SEO): `llms.txt` generated from `site.ts`; HSTS (1 year, no subdomains), `nosniff` and `Referrer-Policy` in `.htaccess`; the privacy block's section tag at `text-paper/85` (was /70, 3.8:1, now 5.0:1); no canonical on the 404; manifest description lists notes and reminders. Remaining Lighthouse contrast flags are intentional (the aria-hidden echoes, source names before they light up).
@@ -31,4 +37,12 @@ Design: [Figma, page "Landing · Editorial (proposal)", frame 56:33](https://www
 ## Open
 
 - [ ] **DNS for www.echo.kimiyu.ch**: does not resolve yet. Needs A `217.26.53.36` and AAAA `2a00:d70:0:b:2002:0:d91a:3524` (the `*.kimiyu.ch` wildcard does not cover it), then add it to the certificate so the www → bare-domain redirect works.
+- [ ] **From the website / MCP briefs, waiting on decisions:**
+  - Lead with Assistants: new hero headline ("Ask your AI about your real work…") and move the section up, search as the supporting point.
+  - Early-access email signup instead of the "Coming soon" button: which email tool? It needs a third party or a form handler, plus a privacy-page update.
+  - Pricing: show early access CHF 59–69 / 1.0 CHF 99, or only "notify me"? Confirm before showing prices.
+  - "The problem" section (quote in a PDF, change in WhatsApp, meeting in the calendar: five apps, no answer).
+  - Demo video of the two examples, recorded with demo data. Who records it?
+  - Imprint in the footer.
+  - Languages of the site: DE / FR as well as EN?
 - [ ] Optional, later: dark mode (not in the design; ask first). Real download link once the app ships.

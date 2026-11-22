@@ -4,6 +4,7 @@ import AskExample from '../components/AskExample.astro';
 import ComingSoon from '../components/ComingSoon.astro';
 import Echo from '../components/Echo.astro';
 import SectionLabel from '../components/SectionLabel.astro';
+import { faq } from '../data/site';
 
 // What a search for "fferte" turns up: the match is set in the accent
 const results = [
@@ -19,11 +20,12 @@ const filters = ['with:', 'from:', 'in:mail', 'has:attachment', 'project:', 'aft
 const sources = [
   { name: 'Mail', note: 'Apple Mail, every mailbox you choose' },
   { name: 'WhatsApp', note: 'Chats, from the Mac app or an export' },
-  { name: 'iMessage', note: 'Messages from this Mac' },
-  { name: 'PDFs', note: 'Project folders, scanned pages too' },
+  { name: 'iMessage', note: 'Messages and SMS from this Mac' },
+  { name: 'PDFs', note: 'Project folders, scans read with OCR' },
   { name: 'Calendar', note: 'Meetings, with who was there' },
   { name: 'Notes', note: 'Apple Notes, except locked ones' },
   { name: 'Reminders', note: 'Open and done, with due dates' },
+  { name: 'Contacts', note: 'Names and numbers that join people' },
 ];
 
 const privacyPoints = [
@@ -32,6 +34,7 @@ const privacyPoints = [
   { title: 'Read-only', text: 'Never changes, moves or sends anything.' },
   { title: 'No account, no cloud', text: 'Nothing to sign up for, nothing to sync.' },
   { title: 'You choose what it reads', text: 'Leave out folders, chats or senders.' },
+  { title: 'AI only if you say so', text: 'Per source, every access logged.' },
   { title: 'Delete all data', text: 'One step, confirmed with Touch ID.' },
 ];
 
@@ -39,6 +42,7 @@ const assistantRules = [
   'Off until you switch it on.',
   'You choose the sources.',
   'Read-only. It can’t send, change or delete.',
+  'Nothing while écho is locked.',
   'Every request is logged in écho.',
 ];
 
@@ -89,7 +93,7 @@ const body = 'text-lg font-medium leading-[1.5]';
         <h3 class={h3}>Type a few words. Get the right one.</h3>
         <p class={body}>
           Every word you type has to match, and any part of a word counts: “dach” finds “Dachsanierung”, “fferte”
-          finds “Offerte”. Results come newest first.
+          finds “Offerte”. Built for German, French and English. Results come newest first.
         </p>
         <ul class="flex flex-wrap gap-8" aria-label="Filters">
           {filters.map((f) => <li class="border border-ink px-10 py-6 font-mono text-[13px] leading-[1.3]">{f}</li>)}
@@ -154,13 +158,13 @@ const body = 'text-lg font-medium leading-[1.5]';
   <section id="privacy" class="bleed mt-96 bg-accent text-paper md:mt-120 xl:mt-160" aria-labelledby="privacy-title">
     <div class="frame pb-64 pt-24 md:pb-96">
       <SectionLabel title="Private by design" aside="Privacy" id="privacy-title" inverse />
-      <p class="reveal pb-40 pt-40 text-statement font-extrabold md:pb-64 md:pt-48">It stays<br /> on this Mac.</p>
+      <p class="reveal pb-40 pt-40 text-statement font-extrabold md:pb-64 md:pt-48">Your index<br /> stays on<br /> this Mac.</p>
       <div class="grid gap-40 xl:grid-cols-[minmax(0,752px)_minmax(0,1fr)] xl:gap-48">
         <p class="text-lead font-medium">
           Your mail and messages are the most personal data you have. écho reads them where they already are and keeps
-          its index on your disk, encrypted. There is no server, and nothing leaves your Mac unless you connect an
-          assistant yourself. Lock écho with Touch ID, leave out what it shouldn’t read, or delete everything in one
-          step.
+          its index on your disk, encrypted. No account, no cloud, no tracking. Connect your AI if you want: you choose
+          which sources it can see, what it asks for goes to that assistant’s provider, and every access is logged.
+          Lock écho with Touch ID, leave out what it shouldn’t read, or delete everything in one step.
         </p>
         <dl>
           {
@@ -176,14 +180,14 @@ const body = 'text-lg font-medium leading-[1.5]';
     </div>
   </section>
 
-  {/* 04 Assistants (MCP), not built yet: two invented exchanges, set as chats. Demo data only */}
+  {/* 04 Assistants (MCP): two invented exchanges, set as chats. Demo data only */}
   <section id="assistants" class={section} aria-labelledby="assistants-title">
-    <SectionLabel title="For your AI assistant · MCP" aside="Coming soon" id="assistants-title" />
+    <SectionLabel title="For your AI assistant" aside="MCP" id="assistants-title" />
     <div class="grid gap-56 pt-32 md:pt-48 lg:grid-cols-[416px_minmax(0,1fr)] lg:gap-48">
       <div class="flex flex-col gap-24 lg:sticky lg:top-120 lg:self-start">
         <h3 class={h3}>Ask your AI about your real work.</h3>
         <p class={body}>
-          Connect écho to Claude or any other MCP client. Your assistant can then answer from your calendar, mail and
+          Connect écho to Claude Desktop, Claude Code or any other MCP client. Your assistant can then answer from your calendar, mail and
           chats, and écho catches it when they don’t agree. Every answer links back to the original.
         </p>
         <ul class="border-b border-ink/15">
@@ -273,6 +277,21 @@ const body = 'text-lg font-medium leading-[1.5]';
             </dt>
             <dd class="text-lead font-medium">{k.label}</dd>
             <dd class="label hidden text-grey md:block">{k.tag}</dd>
+          </div>
+        ))
+      }
+    </dl>
+  </section>
+
+  {/* FAQ: questions on the left, answers on the right, one ruled row each */}
+  <section id="faq" class={section} aria-labelledby="faq-title">
+    <SectionLabel title="Questions" aside="FAQ" id="faq-title" />
+    <dl class="mt-32 border-b border-ink md:mt-48">
+      {
+        faq.map((f, i) => (
+          <div class:list={['reveal grid gap-8 border-t py-20 md:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] md:gap-48 md:py-24', i === 0 ? 'border-ink' : 'border-ink/15']}>
+            <dt class="text-lead font-extrabold">{f.q}</dt>
+            <dd class={body}>{f.a}</dd>
           </div>
         ))
       }

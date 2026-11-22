@@ -21,13 +21,13 @@ import { contact } from '../data/site';
 
   <h2>The app</h2>
   <ul>
-    <li><strong>Your index stays on your Mac.</strong> écho reads your mail, chats, files, calendar, notes and reminders where they already are and keeps its search index on your disk, encrypted, with the key in your Keychain. Settings → Privacy shows how big the index is and where it’s stored.</li>
+    <li><strong>Your index stays on your Mac.</strong> écho reads your mail, chats, files, calendar, notes, reminders and contacts where they already are and keeps its search index on your disk, encrypted, with the key in your Keychain. Settings → Privacy shows how big the index is and where it’s stored.</li>
     <li><strong>App lock.</strong> Lock écho with Touch ID or your password: at launch, after a few minutes idle, when the screen locks, or with ⌃⌘L. It keeps indexing while it’s locked.</li>
     <li><strong>Read-only.</strong> écho never changes, moves, deletes or sends anything in your sources.</li>
-    <li><strong>No account, no server.</strong> There is nothing to sign up for and nothing to sync. écho doesn’t upload your data anywhere.</li>
+    <li><strong>No account, no server.</strong> There is nothing to sign up for and nothing to sync. écho itself doesn’t upload your data anywhere. The one exception is an AI assistant you connect yourself (see below).</li>
     <li><strong>You choose the sources.</strong> Pick the mailboxes and folders it reads, pause them or remove them at any time. Leave out single folders, chats or senders, and écho removes what it already read from them.</li>
     <li><strong>Delete everything.</strong> Settings → Privacy → Delete all data… asks for Touch ID or your password, deletes the index and its key, and quits écho. Your mail, chats and files themselves are not touched.</li>
-    <li><strong>Assistants only if you say so.</strong> Connecting an AI assistant (coming later) will be off until you switch it on, and the assistant will only see the sources you allow. What it reads then goes to that assistant’s model, under that provider’s terms.</li>
+    <li><strong>Assistants only if you say so.</strong> Connecting an AI assistant over MCP (Claude Desktop, Claude Code or another MCP client) is off until you switch it on. The assistant only sees the sources you allow, never what you left out, and nothing while écho is locked. It can only read. Every access is logged in écho. What it reads leaves your Mac: it goes to that assistant’s provider, under that provider’s terms.</li>
   </ul>
 
   <h2>Questions</h2>
