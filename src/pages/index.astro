@@ -41,17 +41,14 @@ const assistantRules = [
   'Every request is logged in écho.',
 ];
 
-// As in the app: in both search panels ↵ shows the match in écho, ⌘↵ opens it in its own app
+// As in the app: in the ⌘K panel ↵ shows the match in écho, ⌘↵ opens it in its own app
 const keys = [
-  { keys: '⌥Space', label: 'Search from any app' },
-  { keys: '⌘K', label: 'Search in écho' },
-  { keys: '↵', label: 'Show the match in écho' },
-  { keys: '⌘↵', label: 'Open it in Mail, WhatsApp or Preview' },
-];
-const moreKeys = [
-  { keys: '⌘1 ⌘2', label: 'Recent, People' },
-  { keys: '⌘⌫', label: 'Clear the search' },
-  { keys: '⌃⌘L', label: 'Lock écho' },
+  { keys: '⌘K', label: 'Search in écho', tag: 'Search' },
+  { keys: '↵', label: 'Show the match in écho', tag: 'Search' },
+  { keys: '⌘↵', label: 'Open it in Mail, WhatsApp or Preview', tag: 'Search' },
+  { keys: '⌘⌫', label: 'Clear the search', tag: 'Search' },
+  { keys: '⌘1 ⌘2', label: 'Recent, People', tag: 'Tabs' },
+  { keys: '⌃⌘L', label: 'Lock écho', tag: 'Privacy' },
 ];
 
 const section = 'frame pt-96 md:pt-120 xl:pt-160';
@@ -221,28 +218,29 @@ const body = 'text-lg font-medium leading-[1.5]';
     </div>
   </section>
 
-  {/* 05 Keys */}
+  {/* Keys: the flow as a statement, then every shortcut in a ruled list (Figma 86:75) */}
   <section id="keys" class={section} aria-labelledby="keys-title">
     <SectionLabel title="Made for the keyboard" aside="Never reach for the mouse" id="keys-title" />
-    {/* ⌥Space is the widest glyph: a full row on phones, a column that fits it from lg */}
-    <dl class="grid grid-cols-3 gap-x-16 gap-y-40 pt-32 md:grid-cols-2 md:gap-x-24 md:pt-48 lg:grid-cols-[auto_1fr_1fr_1fr]">
+    <p class="pb-32 pt-32 text-hero font-extrabold md:pb-56 md:pt-48">
+      <span aria-hidden="true"><span class="font-mono font-medium tracking-[-0.06em] text-accent">⌘K</span>. Type. <span class="font-mono font-medium text-accent">↵</span>.</span>
+      <span class="sr-only">Command K, type, Return.</span>
+    </p>
+    <div class="grid gap-20 pb-40 md:pb-72 lg:grid-cols-[296px_minmax(0,1fr)] lg:gap-48">
+      <p class="label hidden lg:block">Hands on<br /> the keys.</p>
+      <p class="max-w-[760px] text-lead font-medium">
+        Press ⌘K and type a few words. ↵ shows the match in écho, ⌘↵ opens it where it lives. Your hands never leave
+        the keyboard.
+      </p>
+    </div>
+    <dl class="border-b border-ink">
       {
         keys.map((k, i) => (
-          <div class:list={['flex flex-col-reverse justify-end gap-12 md:col-span-1 md:pr-24', i === 0 && 'col-span-3']}>
-            <dt class="text-base font-medium md:text-lg">{k.label}</dt>
-            <dd class="font-mono text-key font-medium">
+          <div class:list={['grid grid-cols-[118px_minmax(0,1fr)] items-center gap-16 border-t py-14 md:grid-cols-[296px_minmax(0,1fr)_auto] md:gap-48 md:py-20', i === 0 ? 'border-ink' : 'border-ink/15']}>
+            <dt class="font-mono text-[clamp(2rem,1.443rem+2.286vw,3.5rem)] font-medium leading-none tracking-[-0.04em]">
               <kbd>{k.keys}</kbd>
-            </dd>
-          </div>
-        ))
-      }
-    </dl>
-    <dl class="flex flex-col gap-8 pt-40 font-mono text-sm text-grey sm:flex-row sm:gap-40">
-      {
-        moreKeys.map((k) => (
-          <div class="flex gap-12">
-            <dt>{k.label}</dt>
-            <dd class="order-first"><kbd>{k.keys}</kbd></dd>
+            </dt>
+            <dd class="text-lead font-medium">{k.label}</dd>
+            <dd class="label hidden text-grey md:block">{k.tag}</dd>
           </div>
         ))
       }

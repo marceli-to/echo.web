@@ -6,6 +6,7 @@ Design: [Figma, page "Landing · Editorial (proposal)", frame 56:33](https://www
 
 ## Done
 
+- **2026-11-22 · Keys redesigned, quick panel removed** (the app dropped ⌥Space): statement "⌘K. Type. ↵.", a lead, and every shortcut in one ruled list (Figma page "Landing · Editorial (proposal)", frames 86:75 and 86:113). Changelog entry "Quick panel removed" added. Sticky header. Not deployed yet.
 - **2026-11-22 · New icons**: the app icon is now the header's "é" (Manrope ExtraBold, ink) on a paper tile; `src/assets/app-icon.png` copied from the app repo, favicons / touch icon / manifest icons regenerated with `npm run assets` (square icons now on paper `#fafaf7`, was dark green). The header itself stays plain text (a brief try with the icon glyph in the wordmark was reverted). `og.png` unchanged. Confirmed by the user. Not deployed yet.
 - **2026-11-22 · Updated for the app's new features**: Notes and Reminders added (Sources list, hero, meta description, privacy page); Recent described as home; To do removed (Sources block, ⌘T, ⌘3); WhatsApp note corrected (no voice-note transcripts); Keys now ⌥Space / ⌘K / ↵ / ⌘↵ plus ⌃⌘L; Privacy points for app lock, leaving things out and deleting all data; three changelog entries. Also smaller fixes: the numbers removed from the labels, nav and Sources list, no app icon in the closer. Checked at 390, 768, 1024, 1280 and 1440 px. Not deployed yet.
 - **2026-11-22 · Contact address** set to marcel@kimiyu.ch (Contact and Privacy pages). Not deployed yet.

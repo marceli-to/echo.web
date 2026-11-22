@@ -12,6 +12,11 @@ export interface Entry {
 export const changelog: Entry[] = [
   {
     date: '2026-11-22',
+    title: 'Quick panel removed',
+    items: ['The ⌥Space quick panel has been removed. Search with ⌘K in écho.'],
+  },
+  {
+    date: '2026-11-22',
     title: 'Recent, refined',
     items: [
       'Filter Recent by kind in one control: All, Mail, Chats, Files, Meetings, Notes and Reminders.',
