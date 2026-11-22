@@ -2,10 +2,11 @@
 
 Status of the écho website (https://echo.kimiyu.ch). Newest first within each section.
 
-Design: [Figma, page "App icon & Landing", frame 46:208](https://www.figma.com/design/0rQpkwuhicdbvHkvUBJeaN/Echo?node-id=46-208&m=dev)
+Design: [Figma, page "Landing · Editorial (proposal)", frame 56:33](https://www.figma.com/design/0rQpkwuhicdbvHkvUBJeaN/Echo?node-id=56-33&m=dev) (first design: [frame 46:208](https://www.figma.com/design/0rQpkwuhicdbvHkvUBJeaN/Echo?node-id=46-208&m=dev), in git up to `10e88cb`)
 
 ## Done
 
+- **2026-11-22 · Redesign: editorial direction** (Figma page "Landing · Editorial (proposal)"). Paper / ink / ultramarine, Manrope + JetBrains Mono only, numbered sections with hairline rules, "found again." with a fading echo, typed-search hero for Search, huge source names, full-bleed ultramarine Privacy block, Assistants as Q&A, giant shortcut glyphs. Privacy, Changelog, Contact and 404 restyled to match. App window, demo pictures and Phosphor icons removed. `og.png` regenerated. Checked at 1440, 1024 and 390 px. Not deployed yet.
 - **2026-11-22 · Live** at https://echo.kimiyu.ch from commit `7bcb502`: SSL active, http → https redirect (301) and the 404 page work.
 - **2026-11-22 · Domain moved to echo.kimiyu.ch** (was echo.app.kimiyu.ch): `astro.config.mjs`, `src/data/site.ts`, privacy page, README and `deploy.sh` (`DEST=/home/pumutuxu/www/echo.kimiyu.ch/public`).
 - **2026-11-22 · Hero revised**: "Local search for your Mac" badge removed, headline scaled down to 40–64 px (was 44–80), `og.png` regenerated.

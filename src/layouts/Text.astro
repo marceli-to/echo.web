@@ -1,10 +1,11 @@
 ---
-// Privacy, Changelog, Contact: one text column in the site's style
+// Privacy, Changelog, Contact: a section label, a big heading, one text column
 import Base from './Base.astro';
 
 interface Props {
   title: string;
   description: string;
+  /** Shown in the label above the heading */
   eyebrow: string;
   /** Heading on the page; defaults to the title */
   heading?: string;
@@ -15,10 +16,13 @@ const { title, description, eyebrow, heading = title, noindex } = Astro.props;
 ---
 
 <Base title={title} description={description} noindex={noindex}>
-  <article class="mx-auto max-w-[720px] px-24 pb-120 pt-56 md:px-48 md:pt-96">
-    <p class="eyebrow">{eyebrow}</p>
-    <h1 class="mt-20 text-h2 font-extrabold">{heading}</h1>
-    <div class="prose-echo mt-32">
+  <article class="frame pb-120 pt-32 md:pb-160 md:pt-72">
+    <p class="label flex justify-between gap-16 border-t border-ink pt-14">
+      <span>{eyebrow}</span>
+      <span class="normal-case text-grey">écho</span>
+    </p>
+    <h1 class="mt-40 max-w-[1100px] text-page font-extrabold md:mt-56">{heading}</h1>
+    <div class="prose-echo mt-48 max-w-[720px] md:mt-72 lg:ml-[calc(296px+48px)]">
       <slot />
     </div>
   </article>

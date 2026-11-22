@@ -1,19 +1,21 @@
 ---
 import { nav } from '../data/site';
-import ComingSoon from './ComingSoon.astro';
 ---
 
-{/* Sticky, on the page ground; the wordmark stands alone, without the icon */}
-<header class="sticky top-0 z-10 bg-ground/90 backdrop-blur-md">
-  <div class="mx-auto flex max-w-[1440px] items-center justify-between gap-24 px-24 py-18 md:px-48 md:py-24 xl:px-64">
-    <a href="/" class="text-xl font-extrabold leading-none text-ink">écho</a>
-    <nav aria-label="Sections" class="hidden md:block">
-      <ul class="flex gap-28 text-[15px] font-semibold text-muted lg:gap-36">
-        {nav.map(({ label, href }) => (
-          <li><a href={href} class="transition-colors hover:text-ink">{label}</a></li>
+{/* Masthead: wordmark, the numbered index of the page, and the status */}
+<header class="border-b border-ink">
+  <div class="frame flex items-center justify-between gap-24 py-16 md:py-22">
+    <a href="/" class="text-[22px] font-extrabold leading-none tracking-[-0.03em] md:text-2xl">écho</a>
+    <nav aria-label="Sections" class="hidden lg:block">
+      <ul class="label flex gap-32 text-xs tracking-[0.02em]">
+        {nav.map(({ number, label, href }) => (
+          <li><a href={href} class="underline-offset-4 hover:text-accent hover:underline"><span aria-hidden="true">{number} </span>{label}</a></li>
         ))}
       </ul>
     </nav>
-    <ComingSoon size="small" />
+    <p class="label flex items-center gap-8 text-[11px] tracking-[0.02em] md:text-xs">
+      <span class="size-8 rounded-full bg-accent" aria-hidden="true"></span>
+      Coming soon<span class="hidden md:inline"> · macOS 26</span>
+    </p>
   </div>
 </header>

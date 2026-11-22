@@ -13,12 +13,13 @@ export const contact = {
   email: 'hello@example.com',
 };
 
-/** Section links in the header, anchors on the home page */
+/** Section links in the masthead, anchors on the home page */
 export const nav = [
-  { label: 'How it works', href: '/#how-it-works' },
-  { label: 'Privacy', href: '/#privacy' },
-  { label: 'Assistants', href: '/#assistants' },
-  { label: 'Shortcuts', href: '/#shortcuts' },
+  { number: '01', label: 'Search', href: '/#search' },
+  { number: '02', label: 'Sources', href: '/#sources' },
+  { number: '03', label: 'Privacy', href: '/#privacy' },
+  { number: '04', label: 'Assistants', href: '/#assistants' },
+  { number: '05', label: 'Keys', href: '/#keys' },
 ];
 
 export const footerNav = [

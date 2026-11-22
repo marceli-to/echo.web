@@ -1,0 +1,19 @@
+---
+// The rule that opens each section: number and title on the left (the section's h2), a tag on the right.
+interface Props {
+  number: string;
+  title: string;
+  aside?: string;
+  id?: string;
+  /** On the ultramarine privacy block */
+  inverse?: boolean;
+}
+
+const { number, title, aside, id, inverse = false } = Astro.props;
+// Long tags would wrap next to the title on a phone, so they only show from 640 px
+---
+
+<div class:list={['label flex items-baseline justify-between gap-16 border-t pt-14', inverse ? 'border-paper' : 'border-ink']}>
+  <h2 id={id}><span aria-hidden="true">({number}) </span>{title}</h2>
+  {aside && <p class:list={['text-right whitespace-nowrap', aside.length > 12 && 'hidden sm:block', inverse ? 'text-paper/70' : 'text-grey']}>{aside}</p>}
+</div>

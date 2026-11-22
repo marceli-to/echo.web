@@ -4,13 +4,13 @@ import { footerNav } from '../data/site';
 const year = new Date().getFullYear();
 ---
 
-<footer class="border-t border-line">
-  <div class="mx-auto flex max-w-[1440px] flex-col-reverse gap-16 px-24 py-28 text-muted sm:flex-row sm:items-center sm:justify-between md:px-48 xl:px-64">
-    <p class="font-mono text-xs">© {year} écho</p>
+<footer class="frame pb-48">
+  <div class="label flex flex-col-reverse gap-16 border-t border-ink pt-16 text-xs tracking-[0.02em] sm:flex-row sm:items-center sm:justify-between">
+    <p>© {year} <span class="normal-case">écho</span> · Made in Switzerland</p>
     <nav aria-label="Footer">
-      <ul class="flex gap-28 text-sm font-semibold">
+      <ul class="flex gap-32">
         {footerNav.map(({ label, href }) => (
-          <li><a href={href} class="transition-colors hover:text-ink">{label}</a></li>
+          <li><a href={href} class="underline-offset-4 hover:text-accent hover:underline">{label}</a></li>
         ))}
       </ul>
     </nav>

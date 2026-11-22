@@ -1,21 +1,19 @@
 ---
-// EchoButtonStyle from the app: primary (accent, one per view) or secondary (surface + hairline);
-// regular 34 px / 14 px text, small 28 px / 13 px, radius 8.
-// With an href it is a link; without one it is a plain label (the "Coming soon" buttons), not a dead link.
+// A black slab with a quiet arrow. With an href it is a link; without one it is a plain label
+// (the "Coming soon" buttons), not a dead link.
 import type { HTMLAttributes } from 'astro/types';
 
 interface Props extends HTMLAttributes<'a'> {
-  variant?: 'primary' | 'secondary';
-  size?: 'regular' | 'small';
+  /** Stretch to the container's width (phone hero) */
+  block?: boolean;
 }
 
-const { variant = 'primary', size = 'regular', href, class: className, ...rest } = Astro.props;
+const { block = false, href, class: className, ...rest } = Astro.props;
 
 const classes = [
-  'inline-flex items-center gap-8 whitespace-nowrap rounded-button font-semibold leading-[1.4] transition-colors',
-  size === 'regular' ? 'h-34 px-14 text-sm' : 'h-28 px-11 text-[13px]',
-  variant === 'primary' ? 'bg-accent text-white' : 'border border-line bg-surface text-ink',
-  href && (variant === 'primary' ? 'hover:bg-[#435276]' : 'hover:bg-white'),
+  'group inline-flex items-center gap-12 bg-ink px-24 py-16 text-base font-bold leading-[1.4] whitespace-nowrap text-paper',
+  block && 'w-full justify-between sm:w-auto',
+  href && 'transition-colors hover:bg-accent',
   className,
 ];
 ---
@@ -24,10 +22,12 @@ const classes = [
   href ? (
     <a href={href} class:list={classes} {...rest}>
       <slot />
+      <span class="font-mono font-normal opacity-50 transition-transform group-hover:translate-x-2" aria-hidden="true">→</span>
     </a>
   ) : (
     <span class:list={classes}>
       <slot />
+      <span class="font-mono font-normal opacity-50" aria-hidden="true">→</span>
     </span>
   )
 }

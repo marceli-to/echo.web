@@ -4,22 +4,19 @@ import Button from './Button.astro';
 import { site } from '../data/site';
 
 interface Props {
-  size?: 'regular' | 'small';
-  /** Show the system requirements below the button */
-  requirements?: boolean;
+  /** Full width on phones */
+  block?: boolean;
+  /** Align the requirements line under the button */
+  align?: 'start' | 'end';
   class?: string;
 }
 
-const { size = 'regular', requirements = false, class: className } = Astro.props;
+const { block = false, align = 'end', class: className } = Astro.props;
 ---
 
-{
-  requirements ? (
-    <div class:list={['flex flex-col items-center gap-28', className]}>
-      <Button size={size}>Coming soon</Button>
-      <p class="font-mono text-xs text-muted">{site.requirements}</p>
-    </div>
-  ) : (
-    <Button size={size} class={className}>Coming soon</Button>
-  )
-}
+<div class:list={['flex flex-col gap-14', align === 'end' ? 'sm:items-end' : 'items-start', className]}>
+  <Button block={block}>Coming soon</Button>
+  <p class:list={['font-mono text-xs leading-[1.5] text-grey', align === 'end' && 'sm:text-right']}>
+    {site.requirements.split(' · ').slice(0, 2).join(' · ')}<br class="hidden sm:inline" /><span class="sm:hidden"> · </span>{site.requirements.split(' · ')[2]}
+  </p>
+</div>

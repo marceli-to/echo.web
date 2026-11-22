@@ -1,0 +1,28 @@
+---
+// The fading repeats under a line of display type. Decorative, so hidden from screen readers;
+// they never wrap and are clipped at the edge of the page instead.
+interface Props {
+  text: string;
+  /** Opacity of each repeat, top to bottom */
+  steps?: number[];
+  class?: string;
+}
+
+const { text, steps = [0.22, 0.1, 0.045], class: className } = Astro.props;
+---
+
+{
+  steps.map((opacity, i) => (
+    <span aria-hidden="true" class:list={['echo block whitespace-nowrap select-none', className]} style={`opacity:${opacity};z-index:${-i - 1}`}>
+      {text}
+    </span>
+  ))
+}
+
+<style>
+  .echo {
+    position: relative;
+    /* Repeats sit closer together than the lines of the headline */
+    line-height: 0.62;
+  }
+</style>

@@ -1,13 +1,22 @@
 ---
 import Base from '../layouts/Base.astro';
 import Button from '../components/Button.astro';
+import Echo from '../components/Echo.astro';
 ---
 
 <Base title="Not found" noindex>
-  <section class="mx-auto flex max-w-[720px] flex-col items-center px-24 pb-160 pt-120 text-center">
-    <p class="eyebrow">404</p>
-    <h1 class="mt-20 text-h2 font-extrabold">Not even écho can find this page.</h1>
-    <p class="mt-20 text-lg font-medium text-muted">The address may be mistyped, or the page has moved.</p>
-    <Button href="/" class="mt-32">Back to the home page</Button>
+  <section class="frame overflow-x-clip pb-120 pt-32 md:pb-160 md:pt-72">
+    <p class="label flex justify-between gap-16 border-t border-ink pt-14">
+      <span>(404) Not found</span>
+      <span class="normal-case text-grey">écho</span>
+    </p>
+    <div class="isolate mt-40 text-page font-extrabold md:mt-56">
+      <h1 class="relative z-10">Not even écho<br /> can find this page.</h1>
+      <Echo text="can find this page." steps={[0.16, 0.06]} />
+    </div>
+    <div class="mt-48 flex max-w-[720px] flex-col items-start gap-28 md:mt-72 lg:ml-[calc(296px+48px)]">
+      <p class="text-lead font-medium">The address may be mistyped, or the page has moved.</p>
+      <Button href="/">Back to the home page</Button>
+    </div>
   </section>
 </Base>

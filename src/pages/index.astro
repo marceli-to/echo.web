@@ -1,207 +1,284 @@
 ---
 import { Image } from 'astro:assets';
 import Base from '../layouts/Base.astro';
-import AppWindow from '../components/AppWindow.astro';
-import AssistantDemo from '../components/AssistantDemo.astro';
-import Button from '../components/Button.astro';
 import ComingSoon from '../components/ComingSoon.astro';
-import Icon from '../components/Icon.astro';
-import type { IconName } from '../components/Icon.astro';
-import KeyHint from '../components/KeyHint.astro';
-import SearchDemo from '../components/SearchDemo.astro';
+import Echo from '../components/Echo.astro';
+import SectionLabel from '../components/SectionLabel.astro';
 import appIcon from '../assets/app-icon.png';
-import { site } from '../data/site';
 
-const cards: { icons: IconName[]; title: string; text: string }[] = [
-  {
-    icons: ['envelope-simple', 'chat-circle', 'file-text', 'calendar-blank'],
-    title: 'Everything you’ve said',
-    text: 'Apple Mail, WhatsApp, iMessage, project folders with PDFs (scanned pages too) and your calendar, read into one index.',
-  },
-  {
-    icons: ['users'],
-    title: 'People, not addresses',
-    text: 'Every address and number someone uses, joined into one timeline. Merge an unknown sender in, split them out again.',
-  },
-  {
-    icons: ['check-square'],
-    title: 'Keep what needs doing',
-    text: 'Press ⌘T on a mail or message to put it on your To do list. Each item keeps a link to where it came from.',
-  },
+// What a search for "fferte" turns up: the match is set in the accent
+const results = [
+  { date: '21 Nov', source: 'Mail', who: 'Sandra Brunner', before: 'Re: ', match: 'Offerte', after: ' Dachsanierung, Variante B' },
+  { date: '18 Nov', source: 'WhatsApp', who: 'Tom Brunner', before: 'Hast du die ', match: 'Offerte', after: ' schon weitergeleitet?' },
+  { date: '12 Nov', source: 'PDF', who: 'Atelier Brunner', before: '', match: 'Offerte', after: '_2026-114_Dach.pdf · page 2' },
+  { date: '03 Nov', source: 'Calendar', who: 'Jour fixe Relaunch', before: 'Besprechung ', match: 'Offerte', after: ' und Termine' },
+  { date: '29 Oct', source: 'iMessage', who: 'Lea', before: 'Die ', match: 'Offerte', after: ' kam heute, schau mal' },
 ];
 
-const assistantPoints: { icon: IconName; text: string }[] = [
-  { icon: 'lock-simple', text: 'Off until you switch it on.' },
-  { icon: 'folder-simple', text: 'You choose the sources: mail and PDFs yes, WhatsApp no.' },
-  { icon: 'eye-slash', text: 'Read-only. It can’t send, change or delete anything.' },
-  { icon: 'clock', text: 'Every request is logged in écho. Locked app, no answers.' },
+const filters = ['with:', 'from:', 'in:mail', 'has:attachment', 'project:', 'after:2026', '"exact phrase"'];
+
+const sources = [
+  { name: 'Mail', note: 'Apple Mail, every mailbox you choose' },
+  { name: 'WhatsApp', note: 'Chats and voice-note transcripts' },
+  { name: 'iMessage', note: 'Messages from this Mac' },
+  { name: 'PDFs', note: 'Project folders, scanned pages too' },
+  { name: 'Calendar', note: 'Meetings, with who was there' },
 ];
 
-const privacyPoints: { icon: IconName; title: string; text: string }[] = [
-  { icon: 'lock-key', title: 'Encrypted index', text: 'The search index on your disk is encrypted.' },
-  { icon: 'eye-slash', title: 'Read-only', text: 'écho only reads your sources. It never changes, moves or sends anything.' },
-  { icon: 'shield-check', title: 'No account, no cloud', text: 'Nothing to sign up for, nothing to sync, nothing uploaded by écho.' },
-  { icon: 'lock-simple', title: 'You choose the sources', text: 'Pick mailboxes and folders, pause or remove any of them.' },
+const privacyPoints = [
+  { title: 'Encrypted index', text: 'On your disk, locked with the app.' },
+  { title: 'Read-only', text: 'Never changes, moves or sends anything.' },
+  { title: 'No account, no cloud', text: 'Nothing to sign up for, nothing to sync.' },
+  { title: 'You choose the sources', text: 'Pause or remove any of them.' },
 ];
 
-// Corrected to the app: ↵ opens the match where it lives, ⌘↵ shows all results in the list
-const shortcuts: { label: string; keys: string[] }[] = [
-  { label: 'Search', keys: ['⌘K'] },
-  { label: 'Open it in Mail, WhatsApp or Preview', keys: ['↵'] },
-  { label: 'Show all results in the list', keys: ['⌘↵'] },
-  { label: 'Recent, People, To do', keys: ['⌘1', '⌘2', '⌘3'] },
-  { label: 'Add to To do', keys: ['⌘T'] },
-  { label: 'Clear the search', keys: ['⌘⌫'] },
+const assistantRules = [
+  'Off until you switch it on.',
+  'You choose the sources.',
+  'Read-only. It can’t send, change or delete.',
+  'Every request is logged in écho.',
 ];
 
-// Section frame: 120 px sides and 160 px above each section at 1440, less on smaller screens
-const section = 'mx-auto max-w-[1440px] px-24 pt-96 md:px-48 md:pt-120 xl:px-120 xl:pt-160';
-const lead = 'text-[17px] font-medium leading-[1.55] text-muted md:text-lg';
+// As in the app: ↵ opens the match where it lives, ⌘↵ shows all results in the list
+const keys = [
+  { keys: '⌘K', label: 'Search from anywhere' },
+  { keys: '↵', label: 'Open it in Mail, WhatsApp or Preview' },
+  { keys: '⌘↵', label: 'Show every result in the list' },
+  { keys: '⌘T', label: 'Add to To do' },
+];
+const moreKeys = [
+  { keys: '⌘1 ⌘2 ⌘3', label: 'Recent, People, To do' },
+  { keys: '⌘⌫', label: 'Clear the search' },
+];
+
+const section = 'frame pt-96 md:pt-120 xl:pt-160';
+const h3 = 'text-h2 font-extrabold';
+const body = 'text-lg font-medium leading-[1.5]';
 ---
 
 <Base>
-  {/* Hero */}
-  <section class="mx-auto flex max-w-[1440px] flex-col items-center px-24 pt-64 text-center md:px-48 md:pt-120 xl:px-120" aria-labelledby="hero-title">
-    <h1 id="hero-title" class="text-display font-extrabold">Everything you’ve written,<br class="hidden sm:inline" /> found again.</h1>
-    <p class="mt-28 max-w-[680px] text-lg font-medium leading-[1.5] text-muted md:text-xl">
-      écho reads your mail, chats, files and meetings into one private index on your Mac. Type a few words and the message
-      you half remember is there, in milliseconds.
+  {/* Hero: the headline, its echo, then a ruled deck */}
+  <section class="frame overflow-x-clip pb-48 pt-32 md:pb-96 md:pt-72" aria-labelledby="hero-title">
+    <div class="label flex justify-between gap-24 pb-24 text-[11px] md:pb-40 md:text-[13px]">
+      <p>(00) Local search for your Mac</p>
+      <p class="hidden text-grey md:block">Mail · WhatsApp · iMessage · PDFs · Calendar</p>
+    </div>
+    <div class="isolate text-hero font-extrabold">
+      <h1 id="hero-title" class="relative z-10">
+        Everything<br /> you’ve written,
+        <span class="block text-accent">found again.</span>
+      </h1>
+      <Echo text="found again." />
+    </div>
+    <div class="mt-40 grid gap-20 border-t border-ink pt-20 md:mt-56 md:pt-28 lg:grid-cols-[296px_minmax(0,1fr)_auto] lg:gap-48">
+      <p class="label hidden lg:block">A search app<br /> that stays put.</p>
+      <p class="max-w-[760px] text-lead font-medium">
+        écho reads your mail, chats, files and meetings into one private index on your Mac. Type a few words and the
+        message you half remember is there, in milliseconds.
+      </p>
+      <ComingSoon block />
+    </div>
+  </section>
+
+  {/* 01 Search */}
+  <section id="search" class={section} aria-labelledby="search-title">
+    <SectionLabel number="01" title="Every word counts" aside="Search" id="search-title" />
+    <p class="flex items-center overflow-hidden whitespace-nowrap pb-16 pt-24 font-mono text-query font-medium md:pb-24 md:pt-48" role="img" aria-label="A search for “fferte”, which also finds “Offerte”">
+      <span class="opacity-12" aria-hidden="true">O</span><span aria-hidden="true">fferte</span>
+      <span class="caret ml-[0.04em] h-[0.85em] w-[0.07em] shrink-0 bg-accent" aria-hidden="true"></span>
     </p>
-    <div class="mt-28 flex flex-wrap justify-center gap-12">
-      <ComingSoon />
-      <Button variant="secondary" href="#how-it-works">See how it works</Button>
-    </div>
-    <p class="mt-28 font-mono text-xs text-muted opacity-80">{site.requirements}</p>
-    <div class="mt-48 w-full max-w-[1200px] md:mt-68">
-      <AppWindow />
-    </div>
-  </section>
-
-  {/* Every word counts */}
-  <section id="how-it-works" class={section} aria-labelledby="search-title">
-    <div class="grid items-center gap-48 lg:grid-cols-[minmax(0,480px)_minmax(0,600px)] lg:justify-between xl:justify-start xl:gap-80">
-      <div class="flex flex-col gap-20">
-        <p class="eyebrow">Every word counts</p>
-        <h2 id="search-title" class="text-h2 font-extrabold">Type a few words.<br /> Get the right one.</h2>
-        <p class={lead}>
-          Every word you type has to match, and any part of a word counts: “dach” finds “Dachsanierung”, “fferte” finds
-          “Offerte”. Newest first, and people you know come up first.
+    <div class="grid gap-48 md:pt-24 lg:grid-cols-[416px_minmax(0,1fr)]">
+      <div class="flex flex-col gap-24">
+        <h3 class={h3}>Type a few words. Get the right one.</h3>
+        <p class={body}>
+          Every word you type has to match, and any part of a word counts: “dach” finds “Dachsanierung”, “fferte”
+          finds “Offerte”. Newest first, and people you know come up first.
         </p>
-        <p class={lead}>
-          Quoted phrases match exactly. Filters narrow it down: with:, from:, in:mail, has:attachment, project:, after:2026.
-        </p>
+        <ul class="flex flex-wrap gap-8" aria-label="Filters">
+          {filters.map((f) => <li class="border border-ink px-10 py-6 font-mono text-[13px] leading-[1.3]">{f}</li>)}
+        </ul>
       </div>
-      <SearchDemo />
+      <div>
+        <ol aria-label="Results for “fferte”" class="border-b border-ink">
+          {
+            results.map((r) => (
+              <li class="grid gap-4 border-t border-ink py-14 xl:grid-cols-[64px_88px_176px_minmax(0,1fr)] xl:items-baseline xl:gap-24 xl:py-18">
+                <p class="font-mono text-[11px] text-grey md:text-xs xl:hidden">
+                  {r.date} · <span class="uppercase">{r.source}</span> · {r.who}
+                </p>
+                <p class="hidden font-mono text-[13px] text-grey xl:block">{r.date}</p>
+                <p class="hidden font-mono text-[13px] uppercase text-grey xl:block">{r.source}</p>
+                <p class="hidden truncate text-[17px] font-bold xl:block">{r.who}</p>
+                <p class="text-base font-medium xl:text-[17px]">
+                  {r.before}<mark class="bg-transparent font-extrabold text-accent">{r.match}</mark>{r.after}
+                </p>
+              </li>
+            ))
+          }
+        </ol>
+        <p class="pt-12 font-mono text-xs text-grey">5 of 214 results · 11 ms</p>
+      </div>
     </div>
   </section>
 
-  {/* One list, newest first */}
-  <section class={section} aria-labelledby="sources-title">
-    <p class="eyebrow">One list, newest first</p>
-    <h2 id="sources-title" class="mt-20 text-h2 font-extrabold">Mail, chats, files and meetings.<br /> One place to look.</h2>
-    <ul class="mt-40 grid gap-16 md:mt-56 md:grid-cols-3 md:gap-24">
+  {/* 02 Sources */}
+  <section id="sources" class={section} aria-labelledby="sources-title">
+    <SectionLabel number="02" title="One list, newest first" aside="Sources" id="sources-title" />
+    <ol class="isolate pt-16 md:pt-24">
       {
-        cards.map((card) => (
-          <li class="flex flex-col rounded-[18px] bg-surface px-28 pb-36 pt-32 lg:px-32">
-            <span class="flex gap-8">
-              {card.icons.map((icon) => (
-                <span class="grid size-32 place-items-center rounded-[9px] bg-tile">
-                  <Icon name={icon} size="16.6px" />
-                </span>
-              ))}
-            </span>
-            <h3 class="mt-24 text-h3 font-bold">{card.title}</h3>
-            <p class="mt-16 text-base font-medium leading-[1.55] text-muted">{card.text}</p>
+        sources.map((s, i) => (
+          <li class="relative flex flex-col gap-4 border-b border-ink/15 py-12 md:flex-row md:items-center md:justify-between md:py-8" style={`z-index:${sources.length - i}`}>
+            <p class="flex items-center gap-16 md:gap-32">
+              <span class="font-mono text-sm text-grey" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+              <span class="text-word font-extrabold">{s.name}</span>
+            </p>
+            <p class="pl-36 font-mono text-[13px] text-grey md:pl-0 md:text-sm">{s.note}</p>
           </li>
         ))
       }
-    </ul>
+    </ol>
+    <div class="grid gap-40 pt-48 md:grid-cols-2 md:gap-48 md:pt-64">
+      <div class="flex flex-col gap-16">
+        <h3 class={h3}>People, not addresses.</h3>
+        <p class={body}>
+          Every address and number someone uses, joined into one timeline. Merge an unknown sender in, split them out
+          again. Type with: and a name to see everything you exchanged.
+        </p>
+      </div>
+      <div class="flex flex-col gap-16">
+        <h3 class={h3}>Keep what needs doing.</h3>
+        <p class={body}>
+          Press ⌘T on a mail or message to put it on your To do list. Each item keeps a link to where it came from.
+        </p>
+      </div>
+    </div>
   </section>
 
-  {/* Assistants (MCP), not built yet */}
-  <section id="assistants" class={section} aria-labelledby="assistants-title">
-    <div class="grid items-center gap-48 lg:grid-cols-[minmax(0,480px)_minmax(0,600px)] lg:justify-between xl:justify-start xl:gap-80">
-      <div class="flex flex-col gap-20">
-        <p class="flex flex-wrap items-center gap-10">
-          <span class="eyebrow">For your AI assistant · MCP</span>
-          <span class="rounded-full bg-accent-tint px-8 py-3 font-mono text-[11px] text-accent">coming soon</span>
+  {/* 03 Privacy: the one full-bleed block */}
+  <section id="privacy" class="mt-96 bg-accent text-paper md:mt-120 xl:mt-160" aria-labelledby="privacy-title">
+    <div class="frame pb-64 pt-24 md:pb-96">
+      <SectionLabel number="03" title="Private by design" aside="Privacy" id="privacy-title" inverse />
+      <p class="pb-40 pt-40 text-statement font-extrabold md:pb-64 md:pt-48">It stays<br /> on this Mac.</p>
+      <div class="grid gap-40 lg:grid-cols-[minmax(0,752px)_minmax(0,1fr)] lg:gap-48">
+        <p class="text-lead font-medium">
+          Your mail and messages are the most personal data you have. écho reads them where they already are and keeps
+          its index on your disk, encrypted. There is no server, and nothing leaves your Mac unless you connect an
+          assistant yourself.
         </p>
-        <h2 id="assistants-title" class="text-h2 font-extrabold">Let your assistant<br /> look it up.</h2>
-        <p class={lead}>
-          Connect écho to Claude or any other MCP client and ask in your own words. The assistant searches through écho,
-          reads the mail, chat or PDF it needs, and answers with links that open the item in écho.
-        </p>
-        <ul class="flex flex-col gap-14 pt-8">
+        <dl>
           {
-            assistantPoints.map((p) => (
-              <li class="flex items-start gap-12 text-base font-medium">
-                <Icon name={p.icon} size="18px" class="mt-1" />
-                {p.text}
+            privacyPoints.map((p) => (
+              <div class="flex flex-col gap-4 border-t border-paper/35 py-14 sm:flex-row sm:justify-between sm:gap-24">
+                <dt class="label">{p.title}</dt>
+                <dd class="text-[15px] font-medium text-paper/80 sm:text-right">{p.text}</dd>
+              </div>
+            ))
+          }
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  {/* 04 Assistants (MCP), not built yet: set as an interview */}
+  <section id="assistants" class={section} aria-labelledby="assistants-title">
+    <SectionLabel number="04" title="For your AI assistant · MCP" aside="Coming soon" id="assistants-title" />
+    <div class="grid gap-56 pt-32 md:pt-48 lg:grid-cols-[416px_minmax(0,1fr)] lg:gap-48">
+      <div class="flex flex-col gap-24">
+        <h3 class={h3}>Let your assistant look it up.</h3>
+        <p class={body}>
+          Connect écho to Claude or any other MCP client and ask in your own words. It searches through écho and answers
+          with links that open the item in écho.
+        </p>
+        <ul class="border-b border-ink/15">
+          {
+            assistantRules.map((r) => (
+              <li class="flex gap-12 border-t border-ink/15 py-10 font-mono text-sm">
+                <span class="text-accent" aria-hidden="true">—</span>
+                {r}
               </li>
             ))
           }
         </ul>
-        <p class="text-sm font-medium leading-[1.5] text-muted opacity-85">
-          What the assistant reads goes to its own model, so it only ever sees the sources you allow.
-        </p>
       </div>
-      <AssistantDemo />
+      <figure class="flex flex-col gap-32 md:gap-40" aria-label="An example question and answer">
+        <div class="flex gap-16 md:gap-24">
+          <span class="pt-[0.35em] font-mono text-base font-bold text-grey" aria-hidden="true">Q</span>
+          <blockquote class="text-quote font-extrabold">“What did Sandra say about the price for the roof?”</blockquote>
+        </div>
+        <div class="flex gap-16 md:gap-24">
+          <span class="pt-2 font-mono text-base font-bold text-accent" aria-hidden="true">A</span>
+          <div class="flex flex-col gap-16">
+            <p class="font-mono text-base leading-[1.55] md:text-lg">
+              Sandra confirmed CHF 180 for the maintenance and said variant B of the roof quote works for them. She asked
+              to start in January.
+            </p>
+            <p class="flex flex-wrap gap-x-16 gap-y-4 font-mono text-[13px] text-accent">
+              <span>↗ WhatsApp · 21 Nov 09:41</span>
+              <span>↗ Mail · Re: Offerte Dachsanierung</span>
+            </p>
+          </div>
+        </div>
+      </figure>
     </div>
   </section>
 
-  {/* Privacy */}
-  <section id="privacy" class={section} aria-labelledby="privacy-title">
-    <div class="rounded-[20px] bg-ink px-24 py-48 md:rounded-[28px] md:p-56 xl:p-80">
-      <p class="eyebrow text-accent-on-ink">Private by design</p>
-      <h2 id="privacy-title" class="mt-20 text-h2 font-extrabold text-surface">It stays on this Mac.</h2>
-      <p class="mt-20 max-w-[640px] text-[17px] font-medium leading-[1.55] text-surface/65 md:text-lg">
-        Your mail and messages are the most personal data you have. écho reads them where they already are and keeps its
-        index on your disk, encrypted. There is no server, and nothing leaves your Mac unless you connect an assistant
-        yourself.
-      </p>
-      <ul class="mt-40 grid gap-x-24 gap-y-32 sm:grid-cols-2 md:mt-56 lg:grid-cols-4">
-        {
-          privacyPoints.map((p) => (
-            <li class="flex flex-col gap-12 border-t border-surface/14 pt-24">
-              <Icon name={p.icon} size="24px" class="text-accent-on-ink" />
-              <h3 class="text-lg font-bold text-surface">{p.title}</h3>
-              <p class="text-[15px] font-medium leading-[1.55] text-surface/60">{p.text}</p>
-            </li>
-          ))
-        }
-      </ul>
-    </div>
+  {/* 05 Keys */}
+  <section id="keys" class={section} aria-labelledby="keys-title">
+    <SectionLabel number="05" title="Made for the keyboard" aside="Never reach for the mouse" id="keys-title" />
+    <dl class="grid grid-cols-2 gap-x-24 gap-y-40 pt-32 md:pt-48 lg:grid-cols-4">
+      {
+        keys.map((k) => (
+          <div class="flex flex-col-reverse justify-end gap-12 pr-24">
+            <dt class="text-base font-medium md:text-lg">{k.label}</dt>
+            <dd class="font-mono text-key font-medium">
+              <kbd>{k.keys}</kbd>
+            </dd>
+          </div>
+        ))
+      }
+    </dl>
+    <dl class="flex flex-col gap-8 pt-40 font-mono text-sm text-grey sm:flex-row sm:gap-40">
+      {
+        moreKeys.map((k) => (
+          <div class="flex gap-12">
+            <dt>{k.label}</dt>
+            <dd class="order-first"><kbd>{k.keys}</kbd></dd>
+          </div>
+        ))
+      }
+    </dl>
   </section>
 
-  {/* Keyboard */}
-  <section id="shortcuts" class={section} aria-labelledby="keyboard-title">
-    <div class="grid items-start gap-40 lg:grid-cols-[minmax(0,440px)_minmax(0,1fr)] lg:gap-48 xl:gap-80">
-      <div class="flex flex-col gap-20">
-        <p class="eyebrow">Made for the keyboard</p>
-        <h2 id="keyboard-title" class="text-h2 font-extrabold">Never reach<br /> for the mouse.</h2>
-        <p class={lead}>⌘K from anywhere in the app. ↵ opens the match where it lives, ⌘↵ shows every result in the list.</p>
+  {/* Close: icon, the echo once more, the button */}
+  <section class="frame overflow-x-clip pb-96 pt-120 md:pb-120 md:pt-200" aria-labelledby="closer-title">
+    <div class="flex flex-col gap-32 md:flex-row md:items-end md:gap-48">
+      <Image
+        src={appIcon}
+        alt="The écho app icon: a white serif é on a dark green tile, its accent doubled in blue"
+        width={176}
+        height={176}
+        densities={[1, 2]}
+        class="size-96 shrink-0 md:size-176"
+      />
+      <div class="isolate min-w-0 flex-1 text-closer font-extrabold">
+        <h2 id="closer-title" class="relative z-10">Find it again.</h2>
+        <Echo text="Find it again." steps={[0.16, 0.06]} />
       </div>
-      <dl class="overflow-hidden rounded-[18px] bg-surface">
-        {
-          shortcuts.map((s) => (
-            <div class="flex items-center justify-between gap-16 border-line px-20 py-18 not-first:border-t md:px-28">
-              <dt class="text-base font-medium">{s.label}</dt>
-              <dd class="flex shrink-0 gap-6">
-                {s.keys.map((k) => (
-                  <KeyHint keys={k} large />
-                ))}
-              </dd>
-            </div>
-          ))
-        }
-      </dl>
+      <ComingSoon block />
     </div>
-  </section>
-
-  {/* Download */}
-  <section class="flex flex-col items-center px-24 pb-120 pt-120 text-center md:pb-160 md:pt-180" aria-labelledby="download-title">
-    <Image src={appIcon} alt="The écho app icon: a white serif é on a dark green tile, its accent doubled in blue" width={160} height={160} densities={[1, 2]} class="size-128 md:size-160" />
-    <h2 id="download-title" class="mt-28 text-display-2 font-extrabold">Find it again.</h2>
-    <ComingSoon requirements class="mt-28" />
   </section>
 </Base>
+
+<style>
+  /* The typed search: the caret blinks, unless motion is reduced */
+  @media (prefers-reduced-motion: no-preference) {
+    .caret {
+      animation: blink 1.1s steps(1) infinite;
+    }
+  }
+  @keyframes blink {
+    50% {
+      opacity: 0;
+    }
+  }
+</style>

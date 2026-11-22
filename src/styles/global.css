@@ -4,33 +4,44 @@
   /* 1 spacing unit = 1px (in rem), so p-24 is 24px, as in Figma */
   --spacing: 0.0625rem;
 
-  /* Figma "Foundations", collection "Écho" (Light) and "Highlight" (Slate, the default accent) */
-  --color-ground: #e4e6e0;
-  --color-surface: #f2f2f2;
-  --color-surface-2: #e9eae6;
-  --color-tile: #daddd5;
-  --color-ink: #1e2621;
-  --color-muted: #47514a;
-  --color-line: #d0d4cb;
-  --color-accent: #4d5e86;
-  --color-accent-tint: #dddfe4;
-  /* The accent as it reads on the dark privacy panel */
-  --color-accent-on-ink: #98a2b9;
-
-  --radius-button: 0.5rem;
+  /* Figma page "Landing · Editorial (proposal)": paper, ink and one ultramarine */
+  --color-paper: #fafaf7;
+  --color-ink: #0d0d0b;
+  --color-accent: #1f3bff;
+  /* Figma uses #787873; darkened so small mono text passes 4.5:1 on paper */
+  --color-grey: #6b6b66;
 
   /* Display sizes grow from the phone value at 390 px to the Figma value at 1440 px */
-  --text-display: clamp(2.5rem, 1.7577rem + 1.9048vw, 4rem); /* 40–64: hero */
-  --text-display--line-height: 1.04;
-  --text-display--letter-spacing: -0.03em;
-  --text-display-2: clamp(2.5rem, 1.7577rem + 1.9048vw, 4rem); /* 40–64: download */
-  --text-display-2--line-height: 1.08;
-  --text-display-2--letter-spacing: -0.03em;
-  --text-h2: clamp(2.125rem, 1.8125rem + 1.3333vw, 3rem); /* 34–48: section headings */
-  --text-h2--line-height: 1.08;
-  --text-h2--letter-spacing: -0.02em;
-  --text-h3: 1.375rem; /* 22: card titles */
-  --text-h3--line-height: 1.3;
+  --text-hero: clamp(3.875rem, 1.229rem + 10.857vw, 11rem); /* 62–176 */
+  --text-hero--line-height: 0.88;
+  --text-hero--letter-spacing: -0.05em;
+  --text-statement: clamp(4rem, 0.843rem + 12.952vw, 12.5rem); /* 64–200: privacy */
+  --text-statement--line-height: 0.86;
+  --text-statement--letter-spacing: -0.05em;
+  --text-query: clamp(5.25rem, 2.557rem + 11.048vw, 12.5rem); /* 84–200: the typed search */
+  --text-query--line-height: 1;
+  --text-query--letter-spacing: -0.06em;
+  --text-word: clamp(3.25rem, 1.671rem + 6.476vw, 7.5rem); /* 52–120: source names */
+  --text-word--line-height: 1.12;
+  --text-word--letter-spacing: -0.04em;
+  --text-closer: clamp(3.5rem, 2.2rem + 5.333vw, 7rem); /* 56–112: Find it again */
+  --text-closer--line-height: 0.9;
+  --text-closer--letter-spacing: -0.04em;
+  --text-key: clamp(4.5rem, 3.2rem + 5.333vw, 8rem); /* 72–128: shortcut glyphs */
+  --text-key--line-height: 1;
+  --text-key--letter-spacing: -0.04em;
+  --text-quote: clamp(2.125rem, 1.614rem + 2.095vw, 3.5rem); /* 34–56: the assistant question */
+  --text-quote--line-height: 1.05;
+  --text-quote--letter-spacing: -0.03em;
+  --text-h2: clamp(2rem, 1.814rem + 0.762vw, 2.5rem); /* 32–40: section headings */
+  --text-h2--line-height: 1.05;
+  --text-h2--letter-spacing: -0.03em;
+  --text-page: clamp(2.75rem, 1.821rem + 3.81vw, 5.25rem); /* 44–84: h1 on text pages */
+  --text-page--line-height: 0.95;
+  --text-page--letter-spacing: -0.04em;
+  --text-lead: clamp(1.125rem, 0.986rem + 0.571vw, 1.5rem); /* 18–24 */
+  --text-lead--line-height: 1.4;
+  --text-lead--letter-spacing: -0.01em;
 
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
   --default-transition-timing-function: var(--ease-out);
@@ -44,8 +55,7 @@
 @layer base {
   html {
     scroll-behavior: smooth;
-    /* The sticky header covers the top of a section that is jumped to */
-    scroll-padding-top: 5rem;
+    scroll-padding-top: 1.5rem;
   }
   body {
     text-wrap: pretty;
@@ -56,61 +66,75 @@
   :focus-visible {
     outline: 2px solid var(--color-accent);
     outline-offset: 3px;
-    border-radius: 4px;
   }
 }
 
-/* Eyebrow above a section heading: mono, accent, spaced capitals */
-@utility eyebrow {
+/* Page frame: 20 px sides on a phone, 64 px at 1440 */
+@utility frame {
+  width: 100%;
+  margin-inline: auto;
+  max-width: 1440px;
+  padding-inline: 1.25rem;
+  @media (width >= 48rem) {
+    padding-inline: 2.5rem;
+  }
+  @media (width >= 80rem) {
+    padding-inline: 4rem;
+  }
+}
+
+/* Small mono capitals: masthead, section labels, captions */
+@utility label {
   font-family: var(--font-mono);
-  font-size: 0.75rem;
-  letter-spacing: 0.06em;
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  letter-spacing: 0.01em;
   text-transform: uppercase;
-  color: var(--color-accent);
 }
 
 /* Plain text pages (Privacy, Changelog, Contact) */
 @utility prose-echo {
   & h2 {
-    margin-top: 3rem;
-    margin-bottom: 0.75rem;
-    font-size: 1.375rem;
-    line-height: 1.3;
-    font-weight: 700;
-    color: var(--color-ink);
+    margin-top: 3.5rem;
+    margin-bottom: 1rem;
+    padding-top: 0.875rem;
+    border-top: 1px solid var(--color-ink);
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    font-weight: 400;
+    letter-spacing: 0.01em;
+    text-transform: uppercase;
   }
   & p, & li {
-    font-size: 1.0625rem;
-    line-height: 1.6;
+    font-size: 1.125rem;
+    line-height: 1.55;
     font-weight: 500;
-    color: var(--color-muted);
   }
   & p + p, & p + ul, & ul + p {
     margin-top: 1rem;
   }
   & ul {
     padding-left: 1.25rem;
-    list-style: disc;
+    list-style: "– ";
   }
   & li + li {
-    margin-top: 0.375rem;
+    margin-top: 0.5rem;
   }
   & li::marker {
-    color: var(--color-line);
+    font-family: var(--font-mono);
+    color: var(--color-accent);
   }
   & a {
     color: var(--color-accent);
     text-decoration: underline;
-    text-decoration-color: color-mix(in srgb, var(--color-accent) 35%, transparent);
+    text-decoration-thickness: 1px;
     text-underline-offset: 0.2em;
-    transition: text-decoration-color 0.2s;
   }
   & a:hover {
-    text-decoration-color: currentColor;
+    text-decoration-thickness: 2px;
   }
   & strong {
-    color: var(--color-ink);
-    font-weight: 600;
+    font-weight: 800;
   }
 }
 
