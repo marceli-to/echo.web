@@ -122,11 +122,8 @@ const body = 'text-lg font-medium leading-[1.5]';
       {
         sources.map((s, i) => (
           <li class="relative flex flex-col gap-4 border-b border-ink/15 py-12 md:flex-row md:items-center md:justify-between md:py-8" style={`z-index:${sources.length - i}`}>
-            <p class="flex items-center gap-16 md:gap-32">
-              <span class="font-mono text-sm text-grey" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
-              <span class="text-word font-extrabold">{s.name}</span>
-            </p>
-            <p class="pl-36 font-mono text-[13px] text-grey md:pl-0 md:text-sm">{s.note}</p>
+            <p class="text-word font-extrabold">{s.name}</p>
+            <p class="font-mono text-[13px] text-grey md:text-sm">{s.note}</p>
           </li>
         ))
       }
