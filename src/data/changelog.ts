@@ -12,6 +12,17 @@ export interface Entry {
 export const changelog: Entry[] = [
   {
     date: '2026-11-22',
+    title: 'Ask your AI (MCP)',
+    items: [
+      'Connect écho to Claude Desktop, Claude Code or another MCP client. Settings → Agents has the setup to copy and paste.',
+      'Off until you turn it on. The switch tells you that what your assistant reads goes to its provider.',
+      'Your assistant searches with the same words and filters as ⌘K, and reads whole mail threads, the chat around a message, PDFs and events.',
+      'Its answers link back to the original: a click opens the item in écho. Ask it to, and it shows the item in écho for you.',
+      'Read-only, and nothing while écho is locked. Your assistant sees names, not email addresses or phone numbers.',
+    ],
+  },
+  {
+    date: '2026-11-22',
     title: 'Quick panel removed',
     items: ['The ⌥Space quick panel has been removed. Search with ⌘K in écho.'],
   },
