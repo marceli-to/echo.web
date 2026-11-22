@@ -1,0 +1,19 @@
+---
+import { nav } from '../data/site';
+import ComingSoon from './ComingSoon.astro';
+---
+
+{/* Sticky, on the page ground; the wordmark stands alone, without the icon */}
+<header class="sticky top-0 z-10 bg-ground/90 backdrop-blur-md">
+  <div class="mx-auto flex max-w-[1440px] items-center justify-between gap-24 px-24 py-18 md:px-48 md:py-24 xl:px-64">
+    <a href="/" class="text-xl font-extrabold leading-none text-ink">écho</a>
+    <nav aria-label="Sections" class="hidden md:block">
+      <ul class="flex gap-28 text-[15px] font-semibold text-muted lg:gap-36">
+        {nav.map(({ label, href }) => (
+          <li><a href={href} class="transition-colors hover:text-ink">{label}</a></li>
+        ))}
+      </ul>
+    </nav>
+    <ComingSoon size="small" />
+  </div>
+</header>

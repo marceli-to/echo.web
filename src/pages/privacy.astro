@@ -1,0 +1,34 @@
+---
+import Text from '../layouts/Text.astro';
+import { contact } from '../data/site';
+---
+
+<Text
+  title="Privacy"
+  eyebrow="Privacy"
+  heading="What we know about you: nothing."
+  description="How the écho website and the écho app handle your data: no analytics, no cookies, no third parties on the site; an encrypted index that stays on your Mac in the app."
+>
+  <p>écho is about keeping your mail and messages to yourself, so this website and the app are built the same way. Here is what that means in practice.</p>
+
+  <h2>This website</h2>
+  <ul>
+    <li><strong>No analytics, no tracking.</strong> We don’t count visitors, record clicks or build profiles.</li>
+    <li><strong>No cookies.</strong> The site doesn’t set any, and doesn’t use local storage either.</li>
+    <li><strong>No third parties.</strong> Fonts, icons and images are served from echo.app.kimiyu.ch itself. There are no embeds, no ad networks and no scripts from anyone else, so your browser only ever talks to this one server.</li>
+    <li><strong>Server logs.</strong> The site is hosted by Hostpoint in Switzerland. Like any web server, theirs keeps standard access logs (IP address, time, the page requested, browser) for operation and security, for a limited time. We don’t use them to identify anyone.</li>
+  </ul>
+  <p>If you write to us, we use your email only to answer you.</p>
+
+  <h2>The app</h2>
+  <ul>
+    <li><strong>Your index stays on your Mac.</strong> écho reads your mail, chats, files and calendar where they already are and keeps its search index on your disk, encrypted.</li>
+    <li><strong>Read-only.</strong> écho never changes, moves, deletes or sends anything in your sources.</li>
+    <li><strong>No account, no server.</strong> There is nothing to sign up for and nothing to sync. écho doesn’t upload your data anywhere.</li>
+    <li><strong>You choose the sources.</strong> Pick the mailboxes and folders it reads, pause them or remove them at any time.</li>
+    <li><strong>Assistants only if you say so.</strong> Connecting an AI assistant (coming later) will be off until you switch it on, and the assistant will only see the sources you allow. What it reads then goes to that assistant’s model, under that provider’s terms.</li>
+  </ul>
+
+  <h2>Questions</h2>
+  <p>Write to <a href={`mailto:${contact.email}`}>{contact.email}</a>.</p>
+</Text>

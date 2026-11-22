@@ -1,0 +1,22 @@
+# build output
+dist/
+.astro/
+
+# dependencies
+node_modules/
+
+# logs and environment
+npm-debug.log*
+.env
+.env.*
+!.env.example
+
+# OS and editors
+.DS_Store
+/.idea
+/.vscode
+/.fleet
+
+# local agent tooling
+/.claude
+/.skills

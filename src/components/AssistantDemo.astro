@@ -1,0 +1,46 @@
+---
+// An assistant answering from écho over MCP, as a static picture (Figma "Assistant demo", 49:424)
+import Icon from './Icon.astro';
+import type { IconName } from './Icon.astro';
+
+const calls = ['écho · search  wartung with:"Sandra Brunner"', 'écho · get_item  Offerte_2026-031_Wartung.pdf'];
+const sources: { icon: IconName; label: string }[] = [
+  { icon: 'file-text', label: 'Offerte_2026-031_Wartung.pdf' },
+  { icon: 'chat-circle', label: 'WhatsApp · Sandra Brunner' },
+];
+---
+
+<figure
+  class="m-0 flex w-full flex-col gap-16 overflow-hidden rounded-[16px] border border-line bg-surface p-20 shadow-[0_24px_60px_rgb(20_26_23/0.12)] select-none sm:p-24"
+  role="img"
+  aria-label="An assistant chat: asked what was agreed with Sandra on the maintenance price, the assistant searches écho, reads the PDF quote and answers CHF 180 a month, with links to the PDF and the WhatsApp chat."
+>
+  <p class="max-w-[90%] self-end rounded-[14px] bg-accent px-16 py-12 text-[15px] font-medium text-white">
+    What did we agree with Sandra on the maintenance price?
+  </p>
+  <div class="flex flex-col items-start gap-6">
+    {
+      calls.map((c) => (
+        <span class="flex max-w-full items-center gap-8 rounded-[8px] border border-line bg-surface-2 px-10 py-6">
+          <Icon name="magnifying-glass" size="13px" />
+          <span class="truncate whitespace-pre font-mono text-[11.5px] text-muted">{c}</span>
+        </span>
+      ))
+    }
+  </div>
+  <p class="text-[15px] font-medium leading-[1.55]">
+    CHF 180.– a month for hosting, updates and monitoring, from quote 2026-031. Sandra confirmed it on WhatsApp the same
+    day: “Ja, CHF 180 für die Wartung passt für uns.”
+  </p>
+  <div class="flex flex-wrap gap-8">
+    {
+      sources.map((s) => (
+        <span class="flex items-center gap-6 rounded-full bg-accent-tint px-10 py-6">
+          <Icon name={s.icon} size="14px" />
+          <span class="text-[12.5px] font-semibold text-accent">{s.label}</span>
+          <Icon name="arrow-up-right" size="12px" />
+        </span>
+      ))
+    }
+  </div>
+</figure>

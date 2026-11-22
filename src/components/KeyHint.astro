@@ -1,0 +1,16 @@
+---
+// A key or shortcut in a hairline box, as in the app's hints. `large` is the keyboard table's size.
+interface Props {
+  keys: string;
+  large?: boolean;
+}
+
+const { keys, large = false } = Astro.props;
+---
+
+<kbd
+  class:list={[
+    'inline-block whitespace-nowrap border-line font-mono font-normal leading-[1.4] text-muted',
+    large ? 'rounded-[7.5px] border-[1.25px] px-7 py-4 text-[13px]' : 'rounded-[6px] border px-6 py-3 text-[10.5px]',
+  ]}>{keys}</kbd
+>

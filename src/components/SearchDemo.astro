@@ -1,0 +1,68 @@
+---
+// The ⌘K panel with a search, as a static picture (Figma "Search demo", 47:365)
+import Icon from './Icon.astro';
+import KeyHint from './KeyHint.astro';
+import type { IconName } from './Icon.astro';
+
+const matches: { icon: IconName; title: string; meta: string; html: string; selected?: boolean }[] = [
+  {
+    icon: 'file-text',
+    title: 'Offerte_2026-031_Wartung.pdf',
+    meta: 'PDF · Atelier Brunner · 2 pages',
+    html: '<b>Wartungsvertrag</b>: Hosting, Updates und Monitoring pauschal CHF <b>180</b>.– pro Monat',
+    selected: true,
+  },
+  {
+    icon: 'chat-circle',
+    title: 'Sandra Brunner',
+    meta: 'WhatsApp · today · 09:31',
+    html: 'Ja, CHF <b>180</b> für die <b>Wartung</b> passt für uns.',
+  },
+  {
+    icon: 'envelope-simple',
+    title: 'Sandra Brunner',
+    meta: 'Mail · Wartung & Betrieb 2027 · You + Sandra',
+    html: 'Anbei unsere Offerte für <b>Wartung</b> und Betrieb im nächsten Jahr, CHF <b>180</b>.– pro Monat.',
+  },
+];
+---
+
+<figure
+  class="m-0 w-full overflow-hidden rounded-[16px] border border-line bg-surface py-8 shadow-[0_24px_60px_rgb(20_26_23/0.12)] select-none"
+  role="img"
+  aria-label="The écho search panel: “wartung 180” filtered to Sandra Brunner finds a PDF quote, a WhatsApp message and a mail, each with the matching words in bold."
+>
+  <div class="flex items-center gap-12 px-20 py-16">
+    <Icon name="magnifying-glass" size="20px" />
+    <p class="flex-1 text-lg font-medium leading-normal">wartung 180</p>
+    <KeyHint keys="esc" />
+  </div>
+  <div class="flex px-20 pb-14">
+    <span class="flex h-30 items-center gap-6 rounded-[15px] border border-line bg-surface pl-12 pr-10">
+      <span class="font-mono text-[11.5px] leading-[1.4] text-muted">with:</span>
+      <span class="text-[13px] font-semibold leading-[1.4]">Sandra Brunner</span>
+      <Icon name="x" size="11px" class="text-muted" />
+    </span>
+  </div>
+  <div class="h-px bg-line"></div>
+  <div class="flex justify-between gap-12 px-20 pb-6 pt-14 font-mono text-[11px] text-muted">
+    <span>MATCHES</span>
+    <span>3 · all words · 6 ms</span>
+  </div>
+  <ul class="px-8 pb-8">
+    {
+      matches.map((m) => (
+        <li class:list={['flex items-start gap-14 rounded-[12px] py-12 pl-12 pr-16', { 'bg-accent-tint': m.selected }]}>
+          <span class="grid size-32 shrink-0 place-items-center rounded-[9px] bg-tile">
+            <Icon name={m.icon} size="16.6px" />
+          </span>
+          <div class="flex min-w-0 flex-1 flex-col gap-4">
+            <p class="truncate text-[15.5px] font-semibold">{m.title}</p>
+            <p class="truncate font-mono text-[11px] text-muted">{m.meta}</p>
+            <p class="text-sm [&_b]:font-bold" set:html={m.html} />
+          </div>
+        </li>
+      ))
+    }
+  </ul>
+</figure>

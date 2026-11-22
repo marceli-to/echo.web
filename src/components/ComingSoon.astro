@@ -1,0 +1,25 @@
+---
+// Stand-in for the download button until there is a public build: same look, not a link.
+import Button from './Button.astro';
+import { site } from '../data/site';
+
+interface Props {
+  size?: 'regular' | 'small';
+  /** Show the system requirements below the button */
+  requirements?: boolean;
+  class?: string;
+}
+
+const { size = 'regular', requirements = false, class: className } = Astro.props;
+---
+
+{
+  requirements ? (
+    <div class:list={['flex flex-col items-center gap-28', className]}>
+      <Button size={size}>Coming soon</Button>
+      <p class="font-mono text-xs text-muted">{site.requirements}</p>
+    </div>
+  ) : (
+    <Button size={size} class={className}>Coming soon</Button>
+  )
+}

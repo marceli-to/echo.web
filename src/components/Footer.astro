@@ -1,0 +1,18 @@
+---
+import { footerNav } from '../data/site';
+
+const year = new Date().getFullYear();
+---
+
+<footer class="border-t border-line">
+  <div class="mx-auto flex max-w-[1440px] flex-col-reverse gap-16 px-24 py-28 text-muted sm:flex-row sm:items-center sm:justify-between md:px-48 xl:px-64">
+    <p class="font-mono text-xs">© {year} écho</p>
+    <nav aria-label="Footer">
+      <ul class="flex gap-28 text-sm font-semibold">
+        {footerNav.map(({ label, href }) => (
+          <li><a href={href} class="transition-colors hover:text-ink">{label}</a></li>
+        ))}
+      </ul>
+    </nav>
+  </div>
+</footer>

@@ -1,0 +1,27 @@
+---
+import Text from '../layouts/Text.astro';
+import { changelog } from '../data/changelog';
+
+const format = (iso: string) =>
+  new Date(`${iso}T12:00:00Z`).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
+---
+
+<Text title="Changelog" eyebrow="Changelog" heading="What’s new in écho." description="What’s in écho so far, newest first.">
+  <ol class="mt-8">
+    {
+      changelog.map((entry) => (
+        <li class="border-t border-line py-32 first:border-t-0 first:pt-8">
+          <p class="!font-mono !text-xs !text-muted">
+            <time datetime={entry.date}>{format(entry.date)}</time>
+          </p>
+          <h2 class="!mt-8">{entry.title}</h2>
+          <ul>
+            {entry.items.map((item) => (
+              <li>{item}</li>
+            ))}
+          </ul>
+        </li>
+      ))
+    }
+  </ol>
+</Text>
