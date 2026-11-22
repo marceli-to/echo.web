@@ -3,7 +3,7 @@ import { defineConfig, fontProviders } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
-  site: 'https://echo.app.kimiyu.ch',
+  site: 'https://echo.kimiyu.ch',
   // Fixed IPv4 address and an own port, so it runs next to the other sites (4322 is taken)
   server: { host: '127.0.0.1', port: 4331 },
   vite: {

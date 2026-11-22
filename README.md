@@ -1,6 +1,6 @@
 # echo.web
 
-Website of **écho**, the private search app for the Mac: **https://echo.app.kimiyu.ch**. A static site built with Astro 7 and Tailwind 4; all content lives in this repo. No analytics, no cookies, no third-party requests: fonts, icons and images are all served from the site itself. Ask before adding anything external.
+Website of **écho**, the private search app for the Mac: **https://echo.kimiyu.ch**. A static site built with Astro 7 and Tailwind 4; all content lives in this repo. No analytics, no cookies, no third-party requests: fonts, icons and images are all served from the site itself. Ask before adding anything external.
 
 The name is always written **écho** (lowercase, with the accent), also at the start of a sentence and in titles.
 
@@ -33,7 +33,7 @@ When the app changes in ways the site describes (shortcuts, sources, the MCP sec
 
 One-time, in the Hostpoint control panel (kimiyu account):
 
-1. Create the subdomain **echo.app.kimiyu.ch** with the document root `www/echo.app.kimiyu.ch/public`.
+1. Create the subdomain **echo.kimiyu.ch** with the document root `www/echo.kimiyu.ch/public`.
 2. Turn on the free Let's Encrypt SSL certificate for it.
 
 Then:
@@ -43,7 +43,7 @@ Then:
 ./deploy.sh             # deploy
 ```
 
-`deploy.sh` refuses to run with uncommitted changes, builds the committed state (`git archive HEAD`) into `dist/` and syncs it with rsync to `/home/pumutuxu/www/echo.app.kimiyu.ch/public` on `pumutuxu@pumutuxu.myhostpoint.ch`, deleting files that no longer exist. `.htaccess` comes from `public/`: it redirects http and `www.` to `https://` without www, sets the caching headers and the 404 page. The server's `.well-known/` is left alone. No PHP or Node is needed on the server.
+`deploy.sh` refuses to run with uncommitted changes, builds the committed state (`git archive HEAD`) into `dist/` and syncs it with rsync to `/home/pumutuxu/www/echo.kimiyu.ch/public` on `pumutuxu@pumutuxu.myhostpoint.ch`, deleting files that no longer exist. `.htaccess` comes from `public/`: it redirects http and `www.` to `https://` without www, sets the caching headers and the 404 page. The server's `.well-known/` is left alone. No PHP or Node is needed on the server.
 
 ## Icons and Open Graph image
 

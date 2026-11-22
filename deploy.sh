@@ -1,18 +1,18 @@
 #!/bin/zsh
 # Deploys the committed state of this repository to Hostpoint over SSH.
 # Run from your Mac:
-#   ./deploy.sh             echo.app.kimiyu.ch
+#   ./deploy.sh             echo.kimiyu.ch
 #   ./deploy.sh --dry-run   only show what would change
 #
 # The site is built locally into dist/ and synced to the web root, which Hostpoint
-# serves from .../echo.app.kimiyu.ch/public. .htaccess comes from public/;
+# serves from .../echo.kimiyu.ch/public. .htaccess comes from public/;
 # .well-known/ on the server is never deleted.
 set -euo pipefail
 cd "$(dirname "$0")"
 
 HOST=pumutuxu@pumutuxu.myhostpoint.ch
-DEST=/home/pumutuxu/www/echo.app.kimiyu.ch/public
-URL=https://echo.app.kimiyu.ch
+DEST=/home/pumutuxu/www/echo.kimiyu.ch/public
+URL=https://echo.kimiyu.ch
 DRY_RUN=()
 for arg in "$@"; do
   case $arg in
