@@ -1,27 +1,11 @@
 ---
 import { nav } from '../data/site';
-
-/** The app icon's "e", 362.7 × 413.1, placed at 230.65, 300 on the 824 tile */
-const ePath =
-  'M362.7 171.45C362.7 174.15 361.8 176.25 360 177.75C358.5 179.25 355.95 180 352.35 180L73.8 180L73.8 172.35L247.95 172.35C253.05 172.35 255.6 169.5 255.6 163.8C255.6 110.4 248.4 70.95 234 45.45C219.9 19.95 202.65 7.2 182.25 7.2C165.45 7.2 150.9 13.05 138.6 24.75C126.3 36.15 116.7 53.7 109.8 77.4C103.2 101.1 99.9 131.25 99.9 167.85C99.9 229.65 112.8 276 138.6 306.9C164.4 337.8 198.3 353.25 240.3 353.25C271.2 353.25 297.3 344.7 318.6 327.6C340.2 310.2 352.2 286.8 354.6 257.4C354.9 256.2 355.35 255.45 355.95 255.15C356.55 254.55 357 254.25 357.3 254.25C357.9 254.25 358.5 254.55 359.1 255.15C359.7 255.75 360 256.8 360 258.3C358.2 288 349.5 314.55 333.9 337.95C318.6 361.05 298.2 379.35 272.7 392.85C247.5 406.35 219.15 413.1 187.65 413.1C150.45 413.1 117.75 404.85 89.55 388.35C61.65 371.85 39.75 348.75 23.85 319.05C7.95 289.05 0 254.1 0 214.2C0 171.6 7.95 134.25 23.85 102.15C40.05 70.05 62.85 45 92.25 27C121.65 9 156 0 195.3 0C229.2 0 258.6 7.5 283.5 22.5C308.7 37.2 328.2 57.45 342 83.25C355.8 109.05 362.7 138.45 362.7 171.45Z';
 ---
 
 {/* Masthead: wordmark, the index of the page, and the status */}
 <header class="border-b border-ink">
   <div class="frame flex items-center justify-between gap-24 py-16 md:py-22">
-    <a href="/" aria-label="écho" class="text-[22px] font-extrabold leading-none tracking-[-0.03em] md:text-2xl">
-      {/* The é is the app icon (tools/make-app-icon.swift in the app repo): the tile in ink, the letter in paper */}
-      <svg
-        viewBox="0 0 824 824"
-        class="mr-[0.06em] inline-block size-[0.86em] align-[-0.12em]"
-        aria-hidden="true"
-      >
-        <rect width="824" height="824" rx="185" class="fill-ink" />
-        <path transform="translate(230.65 300)" d={ePath} class="fill-paper" />
-        <polygon points="352,270 414,150 474,150 396,270" fill="#98a2b9" />
-        <polygon points="442,270 504,150 564,150 486,270" fill="#98a2b9" opacity="0.4" />
-      </svg><span aria-hidden="true">cho</span>
-    </a>
+    <a href="/" class="text-[22px] font-extrabold leading-none tracking-[-0.03em] md:text-2xl">écho</a>
     <nav aria-label="Sections" class="hidden lg:block">
       <ul class="label flex gap-32 text-xs tracking-[0.02em]">
         {nav.map(({ label, href }) => (
