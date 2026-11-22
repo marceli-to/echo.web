@@ -64,7 +64,7 @@ const body = 'text-lg font-medium leading-[1.5]';
         Everything<br /> you’ve written,
         <span class="block text-accent">found again.</span>
       </h1>
-      <Echo text="found again." />
+      <Echo text="found again." motion="disperse" />
     </div>
     <div class="mt-40 grid gap-20 border-t border-ink pt-20 md:mt-56 md:pt-28 lg:grid-cols-[296px_minmax(0,1fr)_auto] lg:gap-48">
       <p class="label hidden lg:block">A search app<br /> that stays put.</p>
@@ -79,9 +79,9 @@ const body = 'text-lg font-medium leading-[1.5]';
   {/* 01 Search */}
   <section id="search" class={section} aria-labelledby="search-title">
     <SectionLabel title="Every word counts" aside="Search" id="search-title" />
-    <p class="flex items-center overflow-hidden whitespace-nowrap pb-16 pt-24 font-mono text-query font-medium md:pb-24 md:pt-48" role="img" aria-label="A search for “fferte”, which also finds “Offerte”">
-      <span class="opacity-12" aria-hidden="true">O</span><span aria-hidden="true">fferte</span>
-      <span class="caret ml-[0.04em] h-[0.85em] w-[0.07em] shrink-0 bg-accent" aria-hidden="true"></span>
+    <p class="flex items-center overflow-clip whitespace-nowrap pb-16 pt-24 font-mono text-query font-medium md:pb-24 md:pt-48" role="img" aria-label="A search for “fferte”, which also finds “Offerte”">
+      <span class="opacity-12" aria-hidden="true">O</span><span class="type-6" aria-hidden="true">fferte</span>
+      <span class="ml-[0.04em] h-[0.85em] w-[0.07em] shrink-0 bg-accent motion-safe:animate-blink" aria-hidden="true"></span>
     </p>
     <div class="grid gap-48 md:pt-24 lg:grid-cols-[416px_minmax(0,1fr)]">
       <div class="flex flex-col gap-24">
@@ -98,7 +98,7 @@ const body = 'text-lg font-medium leading-[1.5]';
         <ol aria-label="Results for “fferte”" class="border-b border-ink">
           {
             results.map((r) => (
-              <li class="grid gap-4 border-t border-ink py-14 xl:grid-cols-[64px_88px_176px_minmax(0,1fr)] xl:items-baseline xl:gap-24 xl:py-18">
+              <li class="reveal grid gap-4 border-t border-ink py-14 xl:grid-cols-[64px_88px_176px_minmax(0,1fr)] xl:items-baseline xl:gap-24 xl:py-18">
                 <p class="font-mono text-[11px] text-grey md:text-xs xl:hidden">
                   {r.date} · <span class="uppercase">{r.source}</span> · {r.who}
                 </p>
@@ -124,7 +124,7 @@ const body = 'text-lg font-medium leading-[1.5]';
       {
         sources.map((s, i) => (
           <li class="relative flex flex-col gap-4 border-b border-ink/15 py-12 md:flex-row md:items-center md:justify-between md:py-8" style={`z-index:${sources.length - i}`}>
-            <p class="text-word font-extrabold">{s.name}</p>
+            <p class="light-up text-word font-extrabold">{s.name}</p>
             <p class="font-mono text-[13px] text-grey md:text-sm">{s.note}</p>
           </li>
         ))
@@ -150,10 +150,10 @@ const body = 'text-lg font-medium leading-[1.5]';
   </section>
 
   {/* 03 Privacy: the one full-bleed block */}
-  <section id="privacy" class="mt-96 bg-accent text-paper md:mt-120 xl:mt-160" aria-labelledby="privacy-title">
+  <section id="privacy" class="bleed mt-96 bg-accent text-paper md:mt-120 xl:mt-160" aria-labelledby="privacy-title">
     <div class="frame pb-64 pt-24 md:pb-96">
       <SectionLabel title="Private by design" aside="Privacy" id="privacy-title" inverse />
-      <p class="pb-40 pt-40 text-statement font-extrabold md:pb-64 md:pt-48">It stays<br /> on this Mac.</p>
+      <p class="reveal pb-40 pt-40 text-statement font-extrabold md:pb-64 md:pt-48">It stays<br /> on this Mac.</p>
       <div class="grid gap-40 xl:grid-cols-[minmax(0,752px)_minmax(0,1fr)] xl:gap-48">
         <p class="text-lead font-medium">
           Your mail and messages are the most personal data you have. écho reads them where they already are and keeps
@@ -164,7 +164,7 @@ const body = 'text-lg font-medium leading-[1.5]';
         <dl>
           {
             privacyPoints.map((p) => (
-              <div class="flex flex-col gap-4 border-t border-paper/35 py-14 sm:flex-row sm:justify-between sm:gap-24">
+              <div class="reveal flex flex-col gap-4 border-t border-paper/35 py-14 sm:flex-row sm:justify-between sm:gap-24">
                 <dt class="label">{p.title}</dt>
                 <dd class="text-[15px] font-medium text-paper/80 sm:text-right">{p.text}</dd>
               </div>
@@ -197,11 +197,11 @@ const body = 'text-lg font-medium leading-[1.5]';
         </ul>
       </div>
       <figure class="flex flex-col gap-32 md:gap-40" aria-label="An example question and answer">
-        <div class="flex gap-16 md:gap-24">
+        <div class="reveal flex gap-16 md:gap-24">
           <span class="pt-[0.35em] font-mono text-base font-bold text-grey" aria-hidden="true">Q</span>
           <blockquote class="text-quote font-extrabold">“What did Sandra say about the price for the roof?”</blockquote>
         </div>
-        <div class="flex gap-16 md:gap-24">
+        <div class="reveal flex gap-16 md:gap-24">
           <span class="pt-2 font-mono text-base font-bold text-accent" aria-hidden="true">A</span>
           <div class="flex flex-col gap-16">
             <p class="font-mono text-base leading-[1.55] md:text-lg">
@@ -221,7 +221,7 @@ const body = 'text-lg font-medium leading-[1.5]';
   {/* Keys: the flow as a statement, then every shortcut in a ruled list (Figma 86:75) */}
   <section id="keys" class={section} aria-labelledby="keys-title">
     <SectionLabel title="Made for the keyboard" aside="Never reach for the mouse" id="keys-title" />
-    <p class="pb-32 pt-32 text-hero font-extrabold md:pb-56 md:pt-48">
+    <p class="reveal pb-32 pt-32 text-hero font-extrabold md:pb-56 md:pt-48">
       <span aria-hidden="true"><span class="font-mono font-medium tracking-[-0.06em] text-accent">⌘K</span>. Type. <span class="font-mono font-medium text-accent">↵</span>.</span>
       <span class="sr-only">Command K, type, Return.</span>
     </p>
@@ -235,7 +235,7 @@ const body = 'text-lg font-medium leading-[1.5]';
     <dl class="border-b border-ink">
       {
         keys.map((k, i) => (
-          <div class:list={['grid grid-cols-[118px_minmax(0,1fr)] items-center gap-16 border-t py-14 md:grid-cols-[296px_minmax(0,1fr)_auto] md:gap-48 md:py-20', i === 0 ? 'border-ink' : 'border-ink/15']}>
+          <div class:list={['reveal grid grid-cols-[118px_minmax(0,1fr)] items-center gap-16 border-t py-14 md:grid-cols-[296px_minmax(0,1fr)_auto] md:gap-48 md:py-20', i === 0 ? 'border-ink' : 'border-ink/15']}>
             <dt class="font-mono text-[clamp(2rem,1.443rem+2.286vw,3.5rem)] font-medium leading-none tracking-[-0.04em]">
               <kbd>{k.keys}</kbd>
             </dt>
@@ -252,23 +252,10 @@ const body = 'text-lg font-medium leading-[1.5]';
     <div class="flex flex-col gap-32 md:flex-row md:items-end md:gap-48">
       <div class="isolate min-w-0 flex-1 text-closer font-extrabold">
         <h2 id="closer-title" class="relative z-10">Find it again.</h2>
-        <Echo text="Find it again." steps={[0.16, 0.06]} />
+        <Echo text="Find it again." steps={[0.16, 0.06]} motion="gather" />
       </div>
       <ComingSoon block />
     </div>
   </section>
 </Base>
 
-<style>
-  /* The typed search: the caret blinks, unless motion is reduced */
-  @media (prefers-reduced-motion: no-preference) {
-    .caret {
-      animation: blink 1.1s steps(1) infinite;
-    }
-  }
-  @keyframes blink {
-    50% {
-      opacity: 0;
-    }
-  }
-</style>

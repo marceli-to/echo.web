@@ -24,7 +24,7 @@ Optionally, Herd can proxy **https://echo.web.test** to the dev server: `herd pr
 - `src/components/SectionLabel.astro` – the ruled line that opens each section: "(01) Title" (the section's h2) and a tag on the right.
 - `src/components/Echo.astro` – the fading repeats under a display line ("found again.", "Find it again."). Decorative, `aria-hidden`, never wrap; they are clipped at the page edge instead.
 - `src/components/Button.astro` – the black slab with the arrow. Without `href` it renders a plain label: that's what `ComingSoon.astro` uses until there is a public download.
-- `src/styles/global.css` – colours (paper, ink, ultramarine, grey) and the fluid type scale: every display size runs from its phone value at 390 px to the Figma value at 1440 px. Also the `frame` (page margins) and `label` (mono capitals) utilities.
+- `src/styles/global.css` – colours (paper, ink, ultramarine, grey) and the fluid type scale: every display size runs from its phone value at 390 px to the Figma value at 1440 px. Also the `frame` (page margins), `label` (mono capitals) and `prose-echo` utilities, built with `@apply` (write new styles as utilities or `@apply`, not plain CSS), and the scroll-driven motion: `reveal`, `wipe`, `light-up`, `bleed`, `type-6`, `echo-disperse`, `echo-gather`, `progress`. These are pure CSS (`animation-timeline`), no script; they only run where the browser supports scroll timelines and motion isn't reduced, otherwise the page stands still in its final state.
 
 When the app changes in ways the site describes (shortcuts, sources, the MCP section), update the copy and the Changelog too.
 
