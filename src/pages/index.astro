@@ -1,5 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
+import AskExample from '../components/AskExample.astro';
 import ComingSoon from '../components/ComingSoon.astro';
 import Echo from '../components/Echo.astro';
 import SectionLabel from '../components/SectionLabel.astro';
@@ -175,15 +176,15 @@ const body = 'text-lg font-medium leading-[1.5]';
     </div>
   </section>
 
-  {/* 04 Assistants (MCP), not built yet: set as an interview */}
+  {/* 04 Assistants (MCP), not built yet: two invented exchanges, set as chats. Demo data only */}
   <section id="assistants" class={section} aria-labelledby="assistants-title">
     <SectionLabel title="For your AI assistant · MCP" aside="Coming soon" id="assistants-title" />
     <div class="grid gap-56 pt-32 md:pt-48 lg:grid-cols-[416px_minmax(0,1fr)] lg:gap-48">
-      <div class="flex flex-col gap-24">
-        <h3 class={h3}>Let your assistant look it up.</h3>
+      <div class="flex flex-col gap-24 lg:sticky lg:top-120 lg:self-start">
+        <h3 class={h3}>Ask your AI about your real work.</h3>
         <p class={body}>
-          Connect écho to Claude or any other MCP client and ask in your own words. It searches through écho and answers
-          with links that open the item in écho.
+          Connect écho to Claude or any other MCP client. Your assistant can then answer from your calendar, mail and
+          chats, and écho catches it when they don’t agree. Every answer links back to the original.
         </p>
         <ul class="border-b border-ink/15">
           {
@@ -196,25 +197,56 @@ const body = 'text-lg font-medium leading-[1.5]';
           }
         </ul>
       </div>
-      <figure class="flex flex-col gap-32 md:gap-40" aria-label="An example question and answer">
-        <div class="reveal flex gap-16 md:gap-24">
-          <span class="pt-[0.35em] font-mono text-base font-bold text-grey" aria-hidden="true">Q</span>
-          <blockquote class="text-quote font-extrabold">“What did Sandra say about the price for the roof?”</blockquote>
-        </div>
-        <div class="reveal flex gap-16 md:gap-24">
-          <span class="pt-2 font-mono text-base font-bold text-accent" aria-hidden="true">A</span>
-          <div class="flex flex-col gap-16">
-            <p class="font-mono text-base leading-[1.55] md:text-lg">
-              Sandra confirmed CHF 180 for the maintenance and said variant B of the roof quote works for them. She asked
-              to start in January.
-            </p>
-            <p class="flex flex-wrap gap-x-16 gap-y-4 font-mono text-[13px] text-accent">
-              <span>↗ WhatsApp · 21 Nov 09:41</span>
-              <span>↗ Mail · Re: Offerte Dachsanierung</span>
-            </p>
-          </div>
-        </div>
-      </figure>
+      <div class="flex flex-col gap-64 md:gap-96">
+        <AskExample
+          caption="Your calendar says Thursday. Your WhatsApp says Wednesday."
+          question="When is my next appointment with Laura Brunner?"
+          searched="Calendar, Mail, WhatsApp"
+        >
+          <p>
+            Your next appointment with Laura Brunner is <strong>probably Wednesday 9 December</strong>, but it isn’t
+            confirmed yet.
+          </p>
+          <ul>
+            <li>
+              <strong>Your calendar</strong> still has it on <strong>Thursday 10 Dec at 09:30</strong> <span class="source">event</span>.
+            </li>
+            <li>
+              <strong>On WhatsApp on 20 Nov</strong>, you asked to move it because a client wants to meet you on the 10th,
+              and offered the 9th or 11th. Laura replied at 16:43: “Ja, Mi 9.12. würde gut gehen. OK?” <span class="source">chat</span>
+            </li>
+          </ul>
+          <p>
+            I don’t see a reply from you after that. To lock it in, confirm the 9th with her, agree on a time (you usually
+            meet at 09:30), and move the calendar entry.
+          </p>
+        </AskExample>
+        <AskExample
+          caption="Before the meeting: everything, from every channel."
+          question="When is my appointment with Thomas Keller?"
+          searched="Calendar, Mail, WhatsApp"
+        >
+          <p>
+            Your appointment with Thomas Keller is on <strong>Thursday 3 December, 13:30–16:30</strong>, at Keller Design
+            AG, Seestrasse 12, 8800 Thalwil <span class="source">event</span>.
+          </p>
+          <ul>
+            <li>
+              It’s called <strong>“TK/SM – Website Relaunch”</strong>, so it’s about the relaunch. Thomas set it up and
+              you’ve accepted.
+            </li>
+            <li>“SM” is probably a second person, but nobody else is on the invite.</li>
+          </ul>
+          <p>
+            The next evening there’s another plan with him: on 27 Oct he wrote on WhatsApp <strong>“Fr 4.12. 18:30 im
+            Bohemia 🥳”</strong> <span class="source">chat</span>. It’s not in your calendar.
+          </p>
+        </AskExample>
+        <p class="border-t border-ink/15 pt-14 font-mono text-[13px] text-grey">
+          écho’s index stays on your Mac. When you connect your AI, you choose which sources it can see, and every access
+          is logged. Names and messages above are made up.
+        </p>
+      </div>
     </div>
   </section>
 

@@ -26,7 +26,7 @@ ${site.name} (always written lowercase, with the accent) is a search app for the
 
 ## Coming later
 
-- An MCP server so AI assistants (Claude or any other MCP client) can search through ${site.name}: off until switched on, limited to the sources the user allows, read-only, and every request is logged.
+- An MCP server so AI assistants (Claude or any other MCP client) can answer from calendar, mail and chats through ${site.name}, with links back to the original, and point out where they disagree (a meeting moved in a chat but not in the calendar). Off until switched on, limited to the sources the user allows, read-only, and every request is logged.
 
 ## Pages
 

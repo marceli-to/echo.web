@@ -179,6 +179,28 @@
   }
 }
 
+/* An assistant's answer in the Assistants showcase */
+@utility answer {
+  @apply flex flex-col gap-16 text-lg/[1.5] font-medium;
+  & strong {
+    @apply font-extrabold;
+  }
+  & ul {
+    @apply flex flex-col gap-10;
+  }
+  & li {
+    @apply relative pl-24;
+  }
+  & li::before {
+    @apply absolute left-0 font-mono text-accent content-['—'];
+  }
+}
+
+/* "event", "chat": where an answer points back to the original. Demo only, so not a real link */
+@utility source {
+  @apply font-mono text-[0.85em] font-medium text-accent underline decoration-1 underline-offset-[0.2em];
+}
+
 /*
  * Scroll-driven motion: plain CSS, no script. Only where the browser can tie an animation to
  * scrolling (Chrome, Edge, Safari 26) and motion isn't reduced; everywhere else the page simply
