@@ -2,6 +2,8 @@
 
 Status of the écho website (https://echo.kimiyu.ch). Newest first within each section.
 
+Design: [Figma, page "App icon & Landing", frame 46:208](https://www.figma.com/design/0rQpkwuhicdbvHkvUBJeaN/Echo?node-id=46-208&m=dev)
+
 ## Done
 
 - **2026-11-22 · Live** at https://echo.kimiyu.ch from commit `7bcb502`: SSL active, http → https redirect (301) and the 404 page work.
