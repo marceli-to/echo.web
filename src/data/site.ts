@@ -14,11 +14,11 @@ export const contact = {
 
 /** Section links in the masthead, anchors on the home page */
 export const nav = [
-  { number: '01', label: 'Search', href: '/#search' },
-  { number: '02', label: 'Sources', href: '/#sources' },
-  { number: '03', label: 'Privacy', href: '/#privacy' },
-  { number: '04', label: 'Assistants', href: '/#assistants' },
-  { number: '05', label: 'Keys', href: '/#keys' },
+  { label: 'Search', href: '/#search' },
+  { label: 'Sources', href: '/#sources' },
+  { label: 'Privacy', href: '/#privacy' },
+  { label: 'Assistants', href: '/#assistants' },
+  { label: 'Keys', href: '/#keys' },
 ];
 
 export const footerNav = [
