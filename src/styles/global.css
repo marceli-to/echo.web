@@ -55,7 +55,8 @@
 @layer base {
   html {
     scroll-behavior: smooth;
-    scroll-padding-top: 1.5rem;
+    /* Room for the sticky masthead (55 px on a phone, 69 px from md) above a jumped-to section */
+    scroll-padding-top: 4.5rem;
   }
   body {
     text-wrap: pretty;
