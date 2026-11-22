@@ -6,6 +6,7 @@ Design: [Figma, page "Landing · Editorial (proposal)", frame 56:33](https://www
 
 ## Done
 
+- **2026-11-22 · Contact address** set to marcel@kimiyu.ch (Contact and Privacy pages). Not deployed yet.
 - **2026-11-22 · Redesign: editorial direction** (Figma page "Landing · Editorial (proposal)"). Paper / ink / ultramarine, Manrope + JetBrains Mono only, numbered sections with hairline rules, "found again." with a fading echo, typed-search hero for Search, huge source names, full-bleed ultramarine Privacy block, Assistants as Q&A, giant shortcut glyphs. Privacy, Changelog, Contact and 404 restyled to match. App window, demo pictures and Phosphor icons removed. `og.png` regenerated. Checked at 1440, 1024 and 390 px. Not deployed yet.
 - **2026-11-22 · Live** at https://echo.kimiyu.ch from commit `7bcb502`: SSL active, http → https redirect (301) and the 404 page work.
 - **2026-11-22 · Domain moved to echo.kimiyu.ch** (was echo.app.kimiyu.ch): `astro.config.mjs`, `src/data/site.ts`, privacy page, README and `deploy.sh` (`DEST=/home/pumutuxu/www/echo.kimiyu.ch/public`).
@@ -21,6 +22,5 @@ Design: [Figma, page "Landing · Editorial (proposal)", frame 56:33](https://www
 
 ## Open
 
-- [ ] **Contact address**: `src/data/site.ts` still has the placeholder `hello@example.com` (shown on Contact and Privacy). Live with the placeholder; replace and redeploy.
 - [ ] **DNS for www.echo.kimiyu.ch**: does not resolve yet. Needs A `217.26.53.36` and AAAA `2a00:d70:0:b:2002:0:d91a:3524` (the `*.kimiyu.ch` wildcard does not cover it), then add it to the certificate so the www → bare-domain redirect works.
 - [ ] Optional, later: dark mode (not in the design; ask first). Real download link once the app ships.

@@ -9,8 +9,7 @@ export const site = {
 };
 
 export const contact = {
-  // TODO: the address comes from the user
-  email: 'hello@example.com',
+  email: 'marcel@kimiyu.ch',
 };
 
 /** Section links in the masthead, anchors on the home page */
