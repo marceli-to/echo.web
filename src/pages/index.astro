@@ -17,17 +17,21 @@ const filters = ['with:', 'from:', 'in:mail', 'has:attachment', 'project:', 'aft
 
 const sources = [
   { name: 'Mail', note: 'Apple Mail, every mailbox you choose' },
-  { name: 'WhatsApp', note: 'Chats and voice-note transcripts' },
+  { name: 'WhatsApp', note: 'Chats, from the Mac app or an export' },
   { name: 'iMessage', note: 'Messages from this Mac' },
   { name: 'PDFs', note: 'Project folders, scanned pages too' },
   { name: 'Calendar', note: 'Meetings, with who was there' },
+  { name: 'Notes', note: 'Apple Notes, except locked ones' },
+  { name: 'Reminders', note: 'Open and done, with due dates' },
 ];
 
 const privacyPoints = [
-  { title: 'Encrypted index', text: 'On your disk, locked with the app.' },
+  { title: 'Encrypted index', text: 'On your disk, its key in your Keychain.' },
+  { title: 'App lock', text: 'Touch ID or your password, at launch or when idle.' },
   { title: 'Read-only', text: 'Never changes, moves or sends anything.' },
   { title: 'No account, no cloud', text: 'Nothing to sign up for, nothing to sync.' },
-  { title: 'You choose the sources', text: 'Pause or remove any of them.' },
+  { title: 'You choose what it reads', text: 'Leave out folders, chats or senders.' },
+  { title: 'Delete all data', text: 'One step, confirmed with Touch ID.' },
 ];
 
 const assistantRules = [
@@ -37,16 +41,17 @@ const assistantRules = [
   'Every request is logged in écho.',
 ];
 
-// As in the app: ↵ opens the match where it lives, ⌘↵ shows all results in the list
+// As in the app: in both search panels ↵ shows the match in écho, ⌘↵ opens it in its own app
 const keys = [
-  { keys: '⌘K', label: 'Search from anywhere' },
-  { keys: '↵', label: 'Open it in Mail, WhatsApp or Preview' },
-  { keys: '⌘↵', label: 'Show every result in the list' },
-  { keys: '⌘T', label: 'Add to To do' },
+  { keys: '⌥Space', label: 'Search from any app' },
+  { keys: '⌘K', label: 'Search in écho' },
+  { keys: '↵', label: 'Show the match in écho' },
+  { keys: '⌘↵', label: 'Open it in Mail, WhatsApp or Preview' },
 ];
 const moreKeys = [
-  { keys: '⌘1 ⌘2 ⌘3', label: 'Recent, People, To do' },
+  { keys: '⌘1 ⌘2', label: 'Recent, People' },
   { keys: '⌘⌫', label: 'Clear the search' },
+  { keys: '⌃⌘L', label: 'Lock écho' },
 ];
 
 const section = 'frame pt-96 md:pt-120 xl:pt-160';
@@ -67,7 +72,7 @@ const body = 'text-lg font-medium leading-[1.5]';
     <div class="mt-40 grid gap-20 border-t border-ink pt-20 md:mt-56 md:pt-28 lg:grid-cols-[296px_minmax(0,1fr)_auto] lg:gap-48">
       <p class="label hidden lg:block">A search app<br /> that stays put.</p>
       <p class="max-w-[760px] text-lead font-medium">
-        écho reads your mail, chats, files and meetings into one private index on your Mac. Type a few words and the
+        écho reads your mail, chats, files, meetings, notes and reminders into one private index on your Mac. Type a few words and the
         message you half remember is there, in milliseconds.
       </p>
       <ComingSoon block />
@@ -86,7 +91,7 @@ const body = 'text-lg font-medium leading-[1.5]';
         <h3 class={h3}>Type a few words. Get the right one.</h3>
         <p class={body}>
           Every word you type has to match, and any part of a word counts: “dach” finds “Dachsanierung”, “fferte”
-          finds “Offerte”. Newest first, and people you know come up first.
+          finds “Offerte”. Results come newest first.
         </p>
         <ul class="flex flex-wrap gap-8" aria-label="Filters">
           {filters.map((f) => <li class="border border-ink px-10 py-6 font-mono text-[13px] leading-[1.3]">{f}</li>)}
@@ -130,16 +135,18 @@ const body = 'text-lg font-medium leading-[1.5]';
     </ol>
     <div class="grid gap-40 pt-48 md:grid-cols-2 md:gap-48 md:pt-64">
       <div class="flex flex-col gap-16">
+        <h3 class={h3}>Recent is home.</h3>
+        <p class={body}>
+          Everything in one list, grouped by day, with a preview next to it. It shows the people you know; switch to
+          Everyone in one click. Filter by mail, chats, files, meetings, notes or reminders, and today’s next meeting
+          waits on top.
+        </p>
+      </div>
+      <div class="flex flex-col gap-16">
         <h3 class={h3}>People, not addresses.</h3>
         <p class={body}>
           Every address and number someone uses, joined into one timeline. Merge an unknown sender in, split them out
           again. Type with: and a name to see everything you exchanged.
-        </p>
-      </div>
-      <div class="flex flex-col gap-16">
-        <h3 class={h3}>Keep what needs doing.</h3>
-        <p class={body}>
-          Press ⌘T on a mail or message to put it on your To do list. Each item keeps a link to where it came from.
         </p>
       </div>
     </div>
@@ -150,11 +157,12 @@ const body = 'text-lg font-medium leading-[1.5]';
     <div class="frame pb-64 pt-24 md:pb-96">
       <SectionLabel title="Private by design" aside="Privacy" id="privacy-title" inverse />
       <p class="pb-40 pt-40 text-statement font-extrabold md:pb-64 md:pt-48">It stays<br /> on this Mac.</p>
-      <div class="grid gap-40 lg:grid-cols-[minmax(0,752px)_minmax(0,1fr)] lg:gap-48">
+      <div class="grid gap-40 xl:grid-cols-[minmax(0,752px)_minmax(0,1fr)] xl:gap-48">
         <p class="text-lead font-medium">
           Your mail and messages are the most personal data you have. écho reads them where they already are and keeps
           its index on your disk, encrypted. There is no server, and nothing leaves your Mac unless you connect an
-          assistant yourself.
+          assistant yourself. Lock écho with Touch ID, leave out what it shouldn’t read, or delete everything in one
+          step.
         </p>
         <dl>
           {
@@ -216,10 +224,11 @@ const body = 'text-lg font-medium leading-[1.5]';
   {/* 05 Keys */}
   <section id="keys" class={section} aria-labelledby="keys-title">
     <SectionLabel title="Made for the keyboard" aside="Never reach for the mouse" id="keys-title" />
-    <dl class="grid grid-cols-2 gap-x-24 gap-y-40 pt-32 md:pt-48 lg:grid-cols-4">
+    {/* ⌥Space is the widest glyph: a full row on phones, a column that fits it from lg */}
+    <dl class="grid grid-cols-3 gap-x-16 gap-y-40 pt-32 md:grid-cols-2 md:gap-x-24 md:pt-48 lg:grid-cols-[auto_1fr_1fr_1fr]">
       {
-        keys.map((k) => (
-          <div class="flex flex-col-reverse justify-end gap-12 pr-24">
+        keys.map((k, i) => (
+          <div class:list={['flex flex-col-reverse justify-end gap-12 md:col-span-1 md:pr-24', i === 0 && 'col-span-3']}>
             <dt class="text-base font-medium md:text-lg">{k.label}</dt>
             <dd class="font-mono text-key font-medium">
               <kbd>{k.keys}</kbd>

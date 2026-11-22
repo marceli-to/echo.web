@@ -3,7 +3,7 @@ export const site = {
   url: 'https://echo.kimiyu.ch',
   title: 'écho: everything you’ve written, found again',
   description:
-    'écho is a Mac app that reads your mail, chats, files and meetings into one private, encrypted index on your Mac. Type a few words and find the message you half remember. No server, no account.',
+    'écho is a Mac app that reads your mail, chats, files, meetings, notes and reminders into one private, encrypted index on your Mac. Type a few words and find the message you half remember. No server, no account.',
   /** Shown under every "Coming soon" button */
   requirements: 'macOS 26 · Apple Silicon · no account needed',
 };

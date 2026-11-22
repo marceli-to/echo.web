@@ -12,6 +12,35 @@ export interface Entry {
 export const changelog: Entry[] = [
   {
     date: '2026-11-22',
+    title: 'Recent, refined',
+    items: [
+      'Filter Recent by kind in one control: All, Mail, Chats, Files, Meetings, Notes and Reminders.',
+      'Calmer list rows: who and when on top, then the title, then a short preview.',
+      'Mail previews read cleaner, without signatures or bare links.',
+      'The ⌘K panel lists every match, not just the first five.',
+      'To do has been removed, with its tab, ⌘T and ⌘3. Recent and People are ⌘1 and ⌘2.',
+    ],
+  },
+  {
+    date: '2026-11-22',
+    title: 'Quick panel, app lock and privacy settings',
+    items: [
+      'Press ⌥Space in any app to search écho in a small panel. ↵ shows the match in écho, ⌘↵ opens it in its own app, ⌘P opens the person. You can change the shortcut in Settings.',
+      'Lock écho with Touch ID or your password: at launch, after a few minutes idle, when the screen locks, or with ⌃⌘L. Indexing goes on while it’s locked.',
+      'Settings → Privacy: leave out folders, chats and senders, see how big the index is and where it’s stored, and delete all data in one step.',
+    ],
+  },
+  {
+    date: '2026-11-22',
+    title: 'Notes and Reminders',
+    items: [
+      'Apple Notes are read from the Notes app on your Mac, except locked notes and Recently Deleted.',
+      'All your reminders are read, done ones marked and due dates shown.',
+      'Both show up in Recent and in search (in:notes, in:reminders), and ↵ opens them in Notes or Reminders.',
+    ],
+  },
+  {
+    date: '2026-11-22',
     title: 'A new look: Recent, People and To do',
     items: [
       'Recent is the new home: mail, chats, files and meetings in one list, newest first, grouped by day, with a preview next to it.',
