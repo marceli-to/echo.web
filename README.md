@@ -18,7 +18,7 @@ Optionally, Herd can proxy **https://echo.web.test** to the dev server: `herd pr
 
 ## Structure
 
-- `src/pages/` – Home (`index.astro`), Privacy, Changelog, Contact, 404, plus the generated `robots.txt` and `sitemap.xml` (every page except the 404, `<lastmod>` = the last commit that changed the page or a `src/data` file it imports; `deploy.sh` passes the repo's `GIT_DIR` to the build).
+- `src/pages/` – Home (`index.astro`), Privacy, Changelog, Contact, 404, plus the generated `robots.txt`, `llms.txt` (a plain-language summary for language models: keep it in step with the home page copy) and `sitemap.xml` (every page except the 404, `<lastmod>` = the last commit that changed the page or a `src/data` file it imports; `deploy.sh` passes the repo's `GIT_DIR` to the build).
 - `src/data/site.ts` – title, description, system requirements, the contact address and the navigation.
 - `src/data/changelog.ts` – the Changelog, newest first. A new entry is one object at the top; keep the wording user-facing.
 - `src/components/SectionLabel.astro` – the ruled line that opens each section: "(01) Title" (the section's h2) and a tag on the right.

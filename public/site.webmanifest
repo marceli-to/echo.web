@@ -1,7 +1,7 @@
 {
   "name": "écho",
   "short_name": "écho",
-  "description": "Everything you’ve written, found again. A private search for your Mac: mail, chats, files and meetings in one encrypted index.",
+  "description": "Everything you’ve written, found again. A private search for your Mac: mail, chats, files, meetings, notes and reminders in one encrypted index.",
   "lang": "en",
   "start_url": "/",
   "display": "browser",

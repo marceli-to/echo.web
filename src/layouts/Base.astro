@@ -37,7 +37,7 @@ const jsonLd = {
     <meta name="format-detection" content="telephone=no, address=no, email=no, date=no" />
     <title>{fullTitle}</title>
     <meta name="description" content={description} />
-    <link rel="canonical" href={canonical} />
+    {!noindex && <link rel="canonical" href={canonical} />}
     {noindex && <meta name="robots" content="noindex" />}
     <meta name="theme-color" content="#fafaf7" />
 

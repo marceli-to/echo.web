@@ -14,5 +14,5 @@ const { title, aside, id, inverse = false } = Astro.props;
 
 <div class:list={['label wipe flex items-baseline justify-between gap-16 border-t pt-14', inverse ? 'border-paper' : 'border-ink']}>
   <h2 id={id}>{title}</h2>
-  {aside && <p class:list={['text-right whitespace-nowrap', aside.length > 12 && 'hidden sm:block', inverse ? 'text-paper/70' : 'text-grey']}>{aside}</p>}
+  {aside && <p class:list={['text-right whitespace-nowrap', aside.length > 12 && 'hidden sm:block', inverse ? 'text-paper/85' : 'text-grey']}>{aside}</p>}
 </div>
