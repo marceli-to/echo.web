@@ -6,7 +6,7 @@ const format = (iso: string) =>
   new Date(`${iso}T12:00:00Z`).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
 ---
 
-<Text title="Changelog" eyebrow="Changelog" heading="What’s new in écho." description="What’s in écho so far, newest first.">
+<Text title="Changelog" heading="What’s new in écho." description="What’s in écho so far, newest first.">
   <ol>
     {
       changelog.map((entry) => (

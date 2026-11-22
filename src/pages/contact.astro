@@ -3,7 +3,7 @@ import Text from '../layouts/Text.astro';
 import { contact } from '../data/site';
 ---
 
-<Text title="Contact" eyebrow="Contact" heading="Say hello." description="How to reach the people behind écho, the private search app for your Mac.">
+<Text title="Contact" heading="Say hello." description="How to reach the people behind écho, the private search app for your Mac.">
   <p>Questions about écho, an idea, a bug, or want to know when it’s ready? Write to us:</p>
   <p class="!mt-24 !text-[clamp(1.5rem,1.2rem+1.2vw,2.25rem)] !font-extrabold !tracking-[-0.02em]"><a href={`mailto:${contact.email}`}>{contact.email}</a></p>
   <p class="!mt-24">We read everything and answer as soon as we can.</p>
