@@ -13,11 +13,11 @@ PORT=4339
 TMP=$(mktemp -d)
 trap 'rm -rf "$TMP"; [[ -n ${PREVIEW:-} ]] && kill $PREVIEW 2>/dev/null || true' EXIT
 
-# The tile alone: transparent corners for the browser tab, on ink for places where the system rounds the corners
+# The tile alone: transparent corners for the browser tab, on paper for places where the system rounds the corners
 magick "$SRC" -crop 824x824+100+100 +repage "$TMP/tile.png"
 magick "$TMP/tile.png" -resize 96x96 public/favicon.png
 magick "$TMP/tile.png" -define icon:auto-resize=48,32,16 public/favicon.ico
-magick "$TMP/tile.png" -background '#1e2621' -flatten "$TMP/square.png"
+magick "$TMP/tile.png" -background '#fafaf7' -flatten "$TMP/square.png"
 magick "$TMP/square.png" -resize 180x180 public/apple-touch-icon.png
 magick "$TMP/square.png" -resize 192x192 public/icon-192.png
 magick "$TMP/square.png" -resize 512x512 public/icon-512.png

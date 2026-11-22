@@ -48,7 +48,7 @@ Then:
 
 `npm run assets` (needs ImageMagick and Google Chrome) writes `public/favicon.*`, `apple-touch-icon.png`, `icon-192.png`, `icon-512.png` and `og.png`:
 
-- The icons come from the app icon "C · Serif é", `src/assets/app-icon.png`, a copy of `App/Resources/Assets.xcassets/AppIcon.appiconset/icon_512x512@2x.png` from the app repo. Copy it again if the icon changes.
+- The icons come from the app icon (the header's "é" in ink on a paper tile, since 2026-11-22), `src/assets/app-icon.png`, a copy of `App/Resources/Assets.xcassets/AppIcon.appiconset/icon_512x512@2x.png` from the app repo. Copy it again if the icon changes.
 - `og.png` (1200 × 630) is a screenshot of the hero (the echoing headline) from a fresh build. Run it again after changing the hero.
 
 ## Fonts
