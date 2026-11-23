@@ -13,7 +13,7 @@ ${site.name} (always written lowercase, with the accent) is a search app for the
 
 ## What it does
 
-- Reads Apple Mail, WhatsApp (the Mac app or an export), iMessage and SMS, PDFs and project folders (scans read with OCR), Calendar, Apple Notes (except locked notes), Reminders and Contacts into one index on the Mac.
+- Reads Apple Mail, WhatsApp (the Mac app or an export), iMessage and SMS, Signal (from Signal Desktop; disappearing messages are left out), PDFs and project folders (scans read with OCR), Calendar, Apple Notes (except locked notes), Reminders and Contacts into one index on the Mac.
 - Built for German, French and English. Every typed word has to match, and any part of a word counts: "dach" finds "Dachsanierung". Results come newest first. Filters: with:, from:, in:mail, has:attachment, project:, after:, "exact phrase".
 - Recent is the home view: everything in one list, grouped by day. People joins every address and number someone uses into one timeline.
 - Keyboard: ⌘K to search, ↵ shows the match in ${site.name}, ⌘↵ opens it in its own app, ⌘⌫ clears the search, ⌘1 / ⌘2 switch between Recent and People, ⌃⌘L locks the app.

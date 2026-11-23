@@ -45,6 +45,10 @@ export const faq = [
     a: 'The WhatsApp Mac app only keeps recent history. Import chat exports from your phone to search further back.',
   },
   {
+    q: 'How does Signal work?',
+    a: 'écho reads the chats Signal Desktop keeps on your Mac. Signal encrypts them, so connecting asks you once to allow access to Signal’s key in your Keychain. Disappearing messages are left out, and disconnecting removes every Signal chat from écho.',
+  },
+  {
     q: 'Which languages does search handle?',
     a: 'German, French and English, including parts of words: “dach” finds “Dachsanierung”.',
   },

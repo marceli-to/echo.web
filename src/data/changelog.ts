@@ -11,6 +11,16 @@ export interface Entry {
 
 export const changelog: Entry[] = [
   {
+    date: '2026-11-23',
+    title: 'Signal',
+    items: [
+      'Signal chats are read from Signal Desktop on your Mac, private chats and groups.',
+      'Connect Signal… on the Sources card asks once for access to Signal’s key in your Keychain. Disconnect removes every Signal chat from écho.',
+      'Disappearing messages, view-once messages and messages deleted for everyone are left out.',
+      'Signal chats show up in Recent, People and search (in:signal, also in:chats), and ⌘↵ opens Signal.',
+    ],
+  },
+  {
     date: '2026-11-22',
     title: 'Ask your AI (MCP)',
     items: [

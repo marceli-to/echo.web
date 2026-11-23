@@ -6,6 +6,7 @@ Design: [Figma, page "Landing · Editorial (proposal)", frame 56:33](https://www
 
 ## Done
 
+- **2026-11-23 · Signal** (the app added it in `5d31fc4`): Sources list, FAQ "How does Signal work?" (Keychain prompt, disappearing messages left out), `llms.txt`, changelog entry.
 - **2026-11-22 · Website and MCP briefs, first pass** (`echo-website-brief.md`, `echo-mcp-direction.md`; the parts with no open questions):
   - Privacy wording: no blanket "nothing leaves your Mac" anywhere. The privacy statement is now "Your index stays on this Mac." The paragraph, privacy page and `llms.txt` say that results an assistant asks for go to its provider. New privacy point "AI only if you say so".
   - Assistants: "Coming soon" tag removed (MCP is part of the standard licence), Claude Desktop / Claude Code named, rule "Nothing while écho is locked" added.
