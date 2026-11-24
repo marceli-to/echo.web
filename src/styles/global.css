@@ -30,9 +30,6 @@
   --text-key: clamp(4.5rem, 3.2rem + 5.333vw, 8rem); /* 72–128: shortcut glyphs */
   --text-key--line-height: 1;
   --text-key--letter-spacing: -0.04em;
-  --text-quote: clamp(2.125rem, 1.614rem + 2.095vw, 3.5rem); /* 34–56: the assistant question */
-  --text-quote--line-height: 1.05;
-  --text-quote--letter-spacing: -0.03em;
   --text-h2: clamp(2rem, 1.814rem + 0.762vw, 2.5rem); /* 32–40: section headings */
   --text-h2--line-height: 1.05;
   --text-h2--letter-spacing: -0.03em;
@@ -181,7 +178,7 @@
 
 /* An assistant's answer in the Assistants showcase */
 @utility answer {
-  @apply flex flex-col gap-16 text-lg/[1.5] font-medium;
+  @apply flex flex-col gap-14 text-base/[1.55] font-medium md:text-lg/[1.5];
   & strong {
     @apply font-extrabold;
   }

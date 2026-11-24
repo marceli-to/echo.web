@@ -1,6 +1,7 @@
 ---
-// One exchange in the Assistants showcase, set as a chat: the question, a short "working" line
-// (what écho looked through), then the answer from the default slot. Demo data only.
+// One exchange in the Assistants showcase, set as a chat: your question in an ink bubble on the right,
+// a status pill for what écho looked through, then the answer in a paper bubble on the left (the
+// default slot). Demo data only.
 interface Props {
   /** Small mono caption above the exchange */
   caption: string;
@@ -12,20 +13,27 @@ interface Props {
 const { caption, question, searched } = Astro.props;
 ---
 
-<figure class="flex flex-col gap-24 border-t border-ink pt-14 md:gap-32">
-  <figcaption class="label text-grey">{caption}</figcaption>
-  <div class="reveal flex gap-16 md:gap-24">
-    <span class="pt-[0.35em] font-mono text-base font-bold text-grey" aria-hidden="true">Q</span>
-    <blockquote class="text-quote font-extrabold">“{question}”</blockquote>
+<figure class="flex flex-col gap-16 border-t border-ink pt-14 md:gap-20">
+  <figcaption class="label pb-8 text-grey md:pb-12">{caption}</figcaption>
+
+  {/* You */}
+  <div class="reveal flex flex-col items-end gap-6">
+    <p class="label text-grey">You</p>
+    <p class="max-w-[85%] rounded-[22px] rounded-br-[6px] bg-ink px-18 py-12 text-lg/[1.4] font-semibold text-paper md:max-w-[75%] md:px-22 md:py-14 md:text-xl/[1.4]">
+      {question}
+    </p>
   </div>
-  {/* The marker column keeps the working line aligned with the question and answer */}
-  <p class="reveal flex items-center gap-16 font-mono text-[13px] text-grey md:gap-24">
-    <span class="flex w-[1ch] shrink-0 justify-center text-base" aria-hidden="true"><span class="size-6 rounded-full bg-accent motion-safe:animate-pulse"></span></span>
+
+  {/* What écho looked through */}
+  <p class="reveal flex w-fit items-center gap-10 rounded-full border border-ink/15 px-12 py-6 font-mono text-[12px] text-grey md:text-[13px]">
+    <span class="size-6 shrink-0 rounded-full bg-accent motion-safe:animate-pulse" aria-hidden="true"></span>
     <span>Searching {searched}…</span>
   </p>
-  <div class="reveal flex gap-16 md:gap-24">
-    <span class="pt-2 font-mono text-base font-bold text-accent" aria-hidden="true">A</span>
-    <div class="answer">
+
+  {/* Your assistant */}
+  <div class="reveal flex flex-col items-start gap-6">
+    <p class="label text-grey">Your assistant <span class="text-accent">· via écho</span></p>
+    <div class="answer max-w-[92%] rounded-[22px] rounded-bl-[6px] border border-ink/10 bg-white px-18 py-16 md:max-w-[88%] md:px-24 md:py-20">
       <slot />
     </div>
   </div>
