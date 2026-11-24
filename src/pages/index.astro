@@ -44,6 +44,7 @@ const assistantRules = [
   'Off until you switch it on.',
   'You choose the sources.',
   'Read-only. It can’t send, change or delete.',
+  'Your mail reaches it as other people’s words, never as orders.',
   'Names, not addresses, unless you allow them.',
   'Nothing while écho is locked.',
   'Every request is logged in écho.',
@@ -52,6 +53,7 @@ const assistantRules = [
 // As in the app: in the ⌘K panel ↵ shows the match in écho, ⌘↵ opens it in its own app
 const keys = [
   { keys: '⌘K', label: 'Search in écho', tag: 'Search' },
+  { keys: '↑ ↓', label: 'Move through the matches', tag: 'Search' },
   { keys: '↵', label: 'Show the match in écho', tag: 'Search' },
   { keys: '⌘↵', label: 'Open it in Mail, WhatsApp or Preview', tag: 'Search' },
   { keys: '⌘⌫', label: 'Clear the search', tag: 'Search' },
@@ -96,7 +98,8 @@ const body = 'text-lg font-medium leading-[1.5]';
         <h3 class={h3}>Type a few words. Get the right one.</h3>
         <p class={body}>
           Every word you type has to match, and any part of a word counts: “dach” finds “Dachsanierung”, “fferte”
-          finds “Offerte”. Small typos are forgiven, a word in a title counts more, and times can be written as words:
+          finds “Offerte”. Small typos are forgiven, “Strasse” finds “Straße”, a word in a title counts more, and times
+          can be written as words:
           “Offerte letztes Jahr”, “Rechnung im Juni”. Built for German, French and English. Results open on the best
           match; one click switches to newest first.
         </p>
@@ -145,7 +148,7 @@ const body = 'text-lg font-medium leading-[1.5]';
         <h3 class={h3}>Recent is home.</h3>
         <p class={body}>
           Everything in one list, grouped by day, with a preview next to it. It shows the people you know; switch to
-          Everyone in one click. Filter by mail, chats, files, meetings, notes or reminders, and today’s next meeting
+          Everyone in one click. Filter by mail, chats, files, links, meetings, notes or reminders, and today’s next meeting
           waits on top. Select a few mails to archive or delete them in Apple Mail, with Undo, or clear out a
           newsletter in one step.
         </p>

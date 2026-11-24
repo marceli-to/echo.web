@@ -14,9 +14,9 @@ ${site.name} (always written lowercase, with the accent) is a search app for the
 ## What it does
 
 - Reads Apple Mail, WhatsApp (the Mac app or an export), iMessage and SMS, Signal (from Signal Desktop; disappearing messages are left out), Files from folders the user picks and from mail attachments (PDFs with OCR for scans, Word, RTF, OpenDocument text, plain text, Markdown, CSV, .eml), Links (saved .webloc files; a link dragged onto the window is saved as one, with the page's title and description), Calendar, Apple Notes (except locked notes), Reminders and Contacts into one index on the Mac.
-- Built for German, French and English. Every typed word has to match, and any part of a word counts: "dach" finds "Dachsanierung". Small typos are forgiven (exact matches rank first), words in a title rank higher, and times written as words narrow the results ("Offerte letztes Jahr", "Rechnung im Juni", "le mois dernier"). There is no search by meaning. Results open on Best match, with a switch to Newest. Filters: with:, from:, in:mail, type: (type:pdf, type:word, type:text, type:markdown, type:csv, type:eml, type:link), has:attachment, project:, after:, "exact phrase".
+- Built for German, French and English. Every typed word has to match, and any part of a word counts: "dach" finds "Dachsanierung", "Strasse" finds "Straße", "Schoenenberger" finds "Schönenberger". Small typos are forgiven (exact matches rank first), words in a title rank higher, and times written as words narrow the results ("Offerte letztes Jahr", "Rechnung im Juni", "le mois dernier"). There is no search by meaning. Results open on Best match, with a switch to Newest. Filters: with:, from:, in:mail, type: (type:pdf, type:word, type:odt, type:rtf, type:text, type:markdown, type:csv, type:eml, type:link), has:attachment, project:, after:, "exact phrase".
 - Recent is the home view: everything in one list, grouped by day. Mails selected there can be archived or deleted in Apple Mail, with Undo, or everything from one sender deleted in one step. People joins every address and number someone uses into one timeline.
-- Keyboard: ⌘K to search, ↵ shows the match in ${site.name}, ⌘↵ opens it in its own app, ⌘⌫ clears the search, ⌘1 / ⌘2 switch between Recent and People, ⌃⌘L locks the app.
+- Keyboard: ⌘K to search, ↑ ↓ move through the matches, ↵ shows the match in ${site.name}, ⌘↵ opens it in its own app, ⌘⌫ clears the search, ⌘1 / ⌘2 switch between Recent and People, ⌃⌘L locks the app.
 
 ## Privacy
 
@@ -28,7 +28,7 @@ ${site.name} (always written lowercase, with the accent) is a search app for the
 ## Your AI assistant (MCP)
 
 - Assistants that support MCP (Claude Desktop, Claude Code and others) can ask ${site.name} questions and answer from calendar, mail and chats, with links back to the original event or chat. They also point out where sources disagree, for example a meeting moved in a chat but not in the calendar.
-- Off until switched on, limited to the sources the user allows (left-out folders, chats and senders stay out), nothing while the app is locked, read-only, names only unless the user allows addresses and numbers, and every access is logged in ${site.name}.
+- Off until switched on, limited to the sources the user allows (left-out folders, chats and senders stay out), nothing while the app is locked, read-only, names only unless the user allows addresses and numbers, what it reads is marked as other people's words (not instructions to follow), and every access is logged (never the content) in ${site.name}.
 
 ## FAQ
 

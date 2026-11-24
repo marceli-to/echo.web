@@ -15,9 +15,11 @@ export const changelog: Entry[] = [
     title: 'Files, links and better search',
     items: [
       'Word, RTF, OpenDocument, text, Markdown, CSV and .eml files are read from your folders and from mail attachments. The PDF source is now called Files. New type: filter (type:word, type:pdf, …).',
-      'Saved links (.webloc) in your folders are searchable. Drag a link from Safari or Finder onto écho and it’s saved, with the page’s title and description (you can switch that off).',
-      'Search forgives small typos, ranks matches in titles higher and understands times like “letztes Jahr” or “im Juni”. Results open on Best match; switch to Newest.',
-      'No empty preview pane when nothing is selected.',
+      'Saved links (.webloc) in your folders are searchable. Drag a link from Safari or Finder onto écho and it’s saved, with the page’s title and description (you can switch that off). Recent has a Links filter.',
+      'Search forgives small typos, finds “Straße” when you type “Strasse”, ranks matches in titles higher and understands times like “letztes Jahr” or “im Juni”. Results open on Best match; switch to Newest.',
+      'Your assistant gets your mail, chats and files marked as other people’s words, to report and never to follow. Several assistants can be connected at once.',
+      'In the ⌘K panel, ↑ ↓ move through the matches. Upcoming meetings come first in Meetings.',
+      'No empty preview pane when nothing is selected, and a crisper app icon.',
     ],
   },
   {
@@ -27,7 +29,7 @@ export const changelog: Entry[] = [
       'Select mails in Recent and archive or delete them in Apple Mail, with Undo. Right-click a mail for the same, or to delete everything from one sender.',
       'Each source has an on/off switch; off removes its items from écho.',
       'Settings → Agents: choose which sources your assistant can use, whether it sees addresses and numbers, and see every access.',
-      'The index takes about half the space.',
+      'The index takes less than half the space, and the app is 19 MB instead of 258 MB. Search is faster on large indexes.',
     ],
   },
   {
@@ -53,25 +55,19 @@ export const changelog: Entry[] = [
   },
   {
     date: '2026-11-22',
-    title: 'Quick panel removed',
-    items: ['The ⌥Space quick panel has been removed. Search with ⌘K in écho.'],
-  },
-  {
-    date: '2026-11-22',
     title: 'Recent, refined',
     items: [
       'Filter Recent by kind in one control: All, Mail, Chats, Files, Meetings, Notes and Reminders.',
       'Calmer list rows: who and when on top, then the title, then a short preview.',
       'Mail previews read cleaner, without signatures or bare links.',
       'The ⌘K panel lists every match, not just the first five.',
-      'To do has been removed, with its tab, ⌘T and ⌘3. Recent and People are ⌘1 and ⌘2.',
+      'Recent and People are ⌘1 and ⌘2.',
     ],
   },
   {
     date: '2026-11-22',
-    title: 'Quick panel, app lock and privacy settings',
+    title: 'App lock and privacy settings',
     items: [
-      'Press ⌥Space in any app to search écho in a small panel. ↵ shows the match in écho, ⌘↵ opens it in its own app, ⌘P opens the person. You can change the shortcut in Settings.',
       'Lock écho with Touch ID or your password: at launch, after a few minutes idle, when the screen locks, or with ⌃⌘L. Indexing goes on while it’s locked.',
       'Settings → Privacy: leave out folders, chats and senders, see how big the index is and where it’s stored, and delete all data in one step.',
     ],
@@ -87,13 +83,12 @@ export const changelog: Entry[] = [
   },
   {
     date: '2026-11-22',
-    title: 'A new look: Recent, People and To do',
+    title: 'A new look: Recent and People',
     items: [
       'Recent is the new home: mail, chats, files and meetings in one list, newest first, grouped by day, with a preview next to it.',
-      'Recent, People and To do sit as tabs in the title bar (⌘1, ⌘2, ⌘3).',
+      'Recent and People sit as tabs in the title bar (⌘1, ⌘2).',
       'Search lives in a ⌘K panel. Every word you type has to match, and any part of a word counts. ↵ opens a match where it lives, ⌘↵ shows all results in the list.',
       'People shows everything from one person, with the people you are most in touch with first.',
-      'To do: press ⌘T on a mail, a chat or a selected sentence. Each item links back to where it came from, and due dates are suggested from the text.',
       'The name is now written “écho”, with a new app icon.',
     ],
   },

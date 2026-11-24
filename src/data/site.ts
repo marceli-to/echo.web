@@ -54,7 +54,7 @@ export const faq = [
   },
   {
     q: 'Which languages does search handle?',
-    a: 'German, French and English, including parts of words: “dach” finds “Dachsanierung”. Small typos are forgiven, and times written as words narrow the results: “letztes Jahr”, “im Juni”, “le mois dernier”. Every word you type still has to match; écho doesn’t guess at meaning.',
+    a: 'German, French and English, including parts of words: “dach” finds “Dachsanierung”, and “Strasse” finds “Straße”. Small typos are forgiven, and times written as words narrow the results: “letztes Jahr”, “im Juni”, “le mois dernier”. Every word you type still has to match; écho doesn’t guess at meaning.',
   },
   {
     q: 'Which AI assistants work?',
