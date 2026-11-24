@@ -28,6 +28,7 @@ ${site.name} (always written lowercase, with the accent) is a search app for the
 ## Your AI assistant (MCP)
 
 - Assistants that support MCP (Claude Desktop, Claude Code and others) can ask ${site.name} questions and answer from calendar, mail and chats, with links back to the original event or chat. They also point out where sources disagree, for example a meeting moved in a chat but not in the calendar.
+- An assistant knows only what it's told; with ${site.name} it can look up the rest. Asked something as open as "What's next?" in a project, an assistant can check ${site.name} on its own and bring up the mail or chat that changed the plan. ${site.name} has no model, embeddings or vector database of its own: it provides the information, the assistant brings the reasoning.
 - Off until switched on, limited to the sources the user allows (left-out folders, chats and senders stay out), nothing while the app is locked, read-only, names only unless the user allows addresses and numbers, what it reads is marked as other people's words (not instructions to follow), and every access is logged (never the content) in ${site.name}.
 
 ## FAQ

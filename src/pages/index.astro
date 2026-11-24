@@ -196,6 +196,10 @@ const body = 'text-lg font-medium leading-[1.5]';
       <div class="flex flex-col gap-24 lg:sticky lg:top-120 lg:self-start">
         <h3 class={h3}>Ask your AI about your real work.</h3>
         <p class={body}>
+          Your assistant knows what you tell it. With écho it can look up the rest: the mail, the chat, the change you
+          forgot to mention. écho finds it; your assistant does the thinking.
+        </p>
+        <p class={body}>
           Connect écho to Claude Desktop, Claude Code or any other MCP client. Your assistant can then answer from your calendar, mail and
           chats, and écho catches it when they don’t agree. Every answer links back to the original.
         </p>
@@ -211,6 +215,30 @@ const body = 'text-lg font-medium leading-[1.5]';
         </ul>
       </div>
       <div class="flex flex-col gap-64 md:gap-96">
+        <AskExample
+          caption="In Claude Code. You only asked what’s next."
+          question="What’s next?"
+          searched="Mail, WhatsApp, Files"
+        >
+          <p>
+            Next in <strong>progress.md</strong> is the contact form. Before you start: two things changed that aren’t
+            in the notes yet.
+          </p>
+          <ul>
+            <li>
+              <strong>Thomas Keller wrote on 19 Nov</strong> that the launch moves from 1 December to
+              <strong>Monday 14 December</strong>: their new photos aren’t ready. <span class="source">mail</span>
+            </li>
+            <li>
+              <strong>On WhatsApp on 21 Nov</strong>, Sandra asked to <strong>drop the newsletter sign-up</strong> for
+              now. <span class="source">chat</span>
+            </li>
+          </ul>
+          <p>
+            The contact form is still next, and the new date leaves room for it. I’d update progress.md first: the new
+            launch date, and the newsletter off the list. Shall I?
+          </p>
+        </AskExample>
         <AskExample
           caption="Your calendar says Thursday. Your WhatsApp says Wednesday."
           question="When is my next appointment with Laura Brunner?"

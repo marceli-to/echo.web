@@ -61,6 +61,10 @@ export const faq = [
     a: 'Assistants that support MCP, such as Claude Desktop and Claude Code.',
   },
   {
+    q: 'Does écho have its own AI?',
+    a: 'No. There’s no model, no embeddings and no vector database inside écho: it finds things by your words, fast, on your Mac. Connect an assistant and the work is split: écho provides the information, your assistant brings the intelligence.',
+  },
+  {
     q: 'Can I delete everything?',
     a: 'Yes. One step, confirmed with Touch ID or your password, removes the index and all of écho’s data. Your mail, chats and files are not touched.',
   },
