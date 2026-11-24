@@ -33,12 +33,16 @@ export const faq = [
     a: 'Apple Mail. Outlook and Gmail in the browser aren’t supported.',
   },
   {
+    q: 'Which files does it read?',
+    a: 'PDFs (scans too, read with OCR), Word, RTF, OpenDocument text, plain text, Markdown, CSV and .eml files, in the folders you pick and as mail attachments. Saved links (.webloc) too, and links you drag onto écho are saved for you. Narrow a search with type:, for example type:word.',
+  },
+  {
     q: 'Which Macs?',
     a: 'Apple Silicon with macOS 26.',
   },
   {
     q: 'Why does it need Full Disk Access?',
-    a: 'To read Mail, WhatsApp, Messages and Notes from where they store their data on your Mac. écho only reads; it never changes anything in those apps.',
+    a: 'To read Mail, WhatsApp, Messages and Notes from where they store their data on your Mac. écho reads that data and leaves it as it is. The one exception is mail you archive or delete from écho: that happens in Apple Mail, after you allow it once.',
   },
   {
     q: 'What about older WhatsApp chats?',
@@ -50,7 +54,7 @@ export const faq = [
   },
   {
     q: 'Which languages does search handle?',
-    a: 'German, French and English, including parts of words: “dach” finds “Dachsanierung”.',
+    a: 'German, French and English, including parts of words: “dach” finds “Dachsanierung”. Small typos are forgiven, and times written as words narrow the results: “letztes Jahr”, “im Juni”, “le mois dernier”. Every word you type still has to match; écho doesn’t guess at meaning.',
   },
   {
     q: 'Which AI assistants work?',

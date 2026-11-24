@@ -15,14 +15,15 @@ const results = [
   { date: '29 Oct', source: 'iMessage', who: 'Lea', before: 'Die ', match: 'Offerte', after: ' kam heute, schau mal' },
 ];
 
-const filters = ['with:', 'from:', 'in:mail', 'has:attachment', 'project:', 'after:2026', '"exact phrase"'];
+const filters = ['with:', 'from:', 'in:mail', 'type:word', 'has:attachment', 'project:', 'after:2026', '"exact phrase"'];
 
 const sources = [
   { name: 'Mail', note: 'Apple Mail, every mailbox you choose' },
   { name: 'WhatsApp', note: 'Chats, from the Mac app or an export' },
   { name: 'iMessage', note: 'Messages and SMS from this Mac' },
   { name: 'Signal', note: 'Chats from Signal Desktop' },
-  { name: 'PDFs', note: 'Project folders, scans read with OCR' },
+  { name: 'Files', note: 'PDFs, Word, text and more from your folders; scans read with OCR' },
+  { name: 'Links', note: 'Bookmarks you save or drop on écho' },
   { name: 'Calendar', note: 'Meetings, with who was there' },
   { name: 'Notes', note: 'Apple Notes, except locked ones' },
   { name: 'Reminders', note: 'Open and done, with due dates' },
@@ -32,9 +33,9 @@ const sources = [
 const privacyPoints = [
   { title: 'Encrypted index', text: 'On your disk, its key in your Keychain.' },
   { title: 'App lock', text: 'Touch ID or your password, at launch or when idle.' },
-  { title: 'Read-only', text: 'Never changes, moves or sends anything.' },
+  { title: 'Changes only what you ask', text: 'Archive or delete mail, with Undo. Never sends anything.' },
   { title: 'No account, no cloud', text: 'Nothing to sign up for, nothing to sync.' },
-  { title: 'You choose what it reads', text: 'Leave out folders, chats or senders.' },
+  { title: 'You choose what it reads', text: 'Switch sources off, leave out folders, chats or senders.' },
   { title: 'AI only if you say so', text: 'Per source, every access logged.' },
   { title: 'Delete all data', text: 'One step, confirmed with Touch ID.' },
 ];
@@ -43,6 +44,7 @@ const assistantRules = [
   'Off until you switch it on.',
   'You choose the sources.',
   'Read-only. It can’t send, change or delete.',
+  'Names, not addresses, unless you allow them.',
   'Nothing while écho is locked.',
   'Every request is logged in écho.',
 ];
@@ -94,7 +96,9 @@ const body = 'text-lg font-medium leading-[1.5]';
         <h3 class={h3}>Type a few words. Get the right one.</h3>
         <p class={body}>
           Every word you type has to match, and any part of a word counts: “dach” finds “Dachsanierung”, “fferte”
-          finds “Offerte”. Built for German, French and English. Results come newest first.
+          finds “Offerte”. Small typos are forgiven, a word in a title counts more, and times can be written as words:
+          “Offerte letztes Jahr”, “Rechnung im Juni”. Built for German, French and English. Results open on the best
+          match; one click switches to newest first.
         </p>
         <ul class="flex flex-wrap gap-8" aria-label="Filters">
           {filters.map((f) => <li class="border border-ink px-10 py-6 font-mono text-[13px] leading-[1.3]">{f}</li>)}
@@ -142,7 +146,8 @@ const body = 'text-lg font-medium leading-[1.5]';
         <p class={body}>
           Everything in one list, grouped by day, with a preview next to it. It shows the people you know; switch to
           Everyone in one click. Filter by mail, chats, files, meetings, notes or reminders, and today’s next meeting
-          waits on top.
+          waits on top. Select a few mails to archive or delete them in Apple Mail, with Undo, or clear out a
+          newsletter in one step.
         </p>
       </div>
       <div class="flex flex-col gap-16">

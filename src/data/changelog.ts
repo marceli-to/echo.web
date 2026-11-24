@@ -11,6 +11,26 @@ export interface Entry {
 
 export const changelog: Entry[] = [
   {
+    date: '2026-11-24',
+    title: 'Files, links and better search',
+    items: [
+      'Word, RTF, OpenDocument, text, Markdown, CSV and .eml files are read from your folders and from mail attachments. The PDF source is now called Files. New type: filter (type:word, type:pdf, …).',
+      'Saved links (.webloc) in your folders are searchable. Drag a link from Safari or Finder onto écho and it’s saved, with the page’s title and description (you can switch that off).',
+      'Search forgives small typos, ranks matches in titles higher and understands times like “letztes Jahr” or “im Juni”. Results open on Best match; switch to Newest.',
+      'No empty preview pane when nothing is selected.',
+    ],
+  },
+  {
+    date: '2026-11-23',
+    title: 'Bulk mail, source switches and a smaller index',
+    items: [
+      'Select mails in Recent and archive or delete them in Apple Mail, with Undo. Right-click a mail for the same, or to delete everything from one sender.',
+      'Each source has an on/off switch; off removes its items from écho.',
+      'Settings → Agents: choose which sources your assistant can use, whether it sees addresses and numbers, and see every access.',
+      'The index takes about half the space.',
+    ],
+  },
+  {
     date: '2026-11-23',
     title: 'Signal',
     items: [
@@ -28,7 +48,7 @@ export const changelog: Entry[] = [
       'Off until you turn it on. The switch tells you that what your assistant reads goes to its provider.',
       'Your assistant searches with the same words and filters as ⌘K, and reads whole mail threads, the chat around a message, PDFs and events.',
       'Its answers link back to the original: a click opens the item in écho. Ask it to, and it shows the item in écho for you.',
-      'Read-only, and nothing while écho is locked. Your assistant sees names, not email addresses or phone numbers.',
+      'Read-only, and nothing while écho is locked. Your assistant sees names, not email addresses or phone numbers, unless you allow it.',
     ],
   },
   {
