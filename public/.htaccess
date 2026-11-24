@@ -11,6 +11,10 @@ RewriteCond %{HTTP_HOST} ^www\. [NC]
 RewriteCond %{HTTP_HOST} ^(?:www\.)?(.+)$ [NC]
 RewriteRule ^ https://%1%{REQUEST_URI} [R=301,L]
 
+# /downloads/ holds builds for testers (uploaded by deploy.sh, not in git):
+# no folder listing, only direct links work.
+RewriteRule ^downloads/?$ - [R=404,L]
+
 AddType application/manifest+json .webmanifest
 
 # Unknown addresses get the site's own 404 page instead of Apache's
@@ -29,6 +33,11 @@ ErrorDocument 404 /404.html
   <ElseIf "%{REQUEST_URI} =~ m#(^|/|\.html)$#">
     Header set Cache-Control "no-cache"
   </ElseIf>
+  # Tester builds: never indexed, and a replaced file under the same name is fetched fresh
+  <If "%{REQUEST_URI} =~ m#^/downloads/#">
+    Header set X-Robots-Tag "noindex, nofollow, noarchive"
+    Header set Cache-Control "no-cache"
+  </If>
 
   # Security: browsers remember to use https for a year (only sent over https; not for subdomains,
   # since www.echo.kimiyu.ch has no certificate yet), no MIME sniffing, and other sites only see

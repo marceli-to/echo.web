@@ -2,6 +2,9 @@
 dist/
 .astro/
 
+# builds for testers (deploy.sh uploads them to /downloads/)
+/downloads/
+
 # dependencies
 node_modules/
 

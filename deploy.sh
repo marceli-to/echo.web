@@ -7,6 +7,8 @@
 # The site is built locally into dist/ and synced to the web root, which Hostpoint
 # serves from .../echo.kimiyu.ch/public. .htaccess comes from public/;
 # .well-known/ on the server is never deleted.
+# downloads/ (gitignored, e.g. .dmg builds for testers) is uploaded to /downloads/;
+# files there are never deleted by a deploy: remove old builds on the server by hand.
 set -euo pipefail
 cd "$(dirname "$0")"
 
@@ -41,6 +43,12 @@ ln -s "$PWD/node_modules" "$STAGE/node_modules"
 REPO_GIT="$PWD/.git"
 (cd "$STAGE" && GIT_DIR="$REPO_GIT" npm run build --silent)
 
+# Tester builds: not in git, so copied in from the working folder (-c: APFS clone, no extra disk space)
+if [[ -d downloads ]]; then
+  mkdir -p "$STAGE/dist/downloads"
+  cp -Rc downloads/ "$STAGE/dist/downloads/"
+fi
+
 # Folders 755, files 644 (macOS ships openrsync, which has no --chmod)
 chmod -R u=rwX,go=rX "$STAGE/dist"
 
@@ -49,6 +57,7 @@ echo "Uploading to $URL…"
 rsync -rlptz --delete "${DRY_RUN[@]}" \
   --rsync-path "mkdir -p '$DEST' && rsync" \
   --filter 'protect /.well-known/' \
+  --filter 'protect /downloads/***' \
   "$STAGE/dist/" "$HOST:$DEST/"
 
 if (( ${#DRY_RUN} )); then
