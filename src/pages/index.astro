@@ -86,6 +86,24 @@ const body = 'text-lg font-medium leading-[1.5]';
     </div>
   </section>
 
+  {/* Showreel: plays on click only, nothing loads before (preload none), served from this site */}
+  <section id="reel" class="frame pt-48 md:pt-72" aria-labelledby="reel-title">
+    <SectionLabel title="See it in two minutes" aside="No sound" id="reel-title" />
+    <video
+      class="mt-16 block aspect-[16/10] w-full border border-ink/15 bg-[#efefe9] md:mt-24"
+      src="/video/echo-reel.mp4"
+      poster="/video/echo-reel-poster.jpg"
+      preload="none"
+      controls
+      playsinline
+      width="3200"
+      height="2000"
+      aria-label="écho showreel: search, your AI assistant and Claude Code, 2 minutes, no sound"
+    >
+      <a href="/video/echo-reel.mp4">Download the showreel (MP4, 13 MB)</a>
+    </video>
+  </section>
+
   {/* 01 Search */}
   <section id="search" class={section} aria-labelledby="search-title">
     <SectionLabel title="Every word counts" aside="Search" id="search-title" />
