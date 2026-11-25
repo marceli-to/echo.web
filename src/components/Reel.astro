@@ -1,0 +1,139 @@
+---
+// The showreel with the site's own player: an ink slab over the still frame starts it, then a ruled
+// row under the video (Play/Pause, an accent progress line, the time, Full screen). Without script
+// the browser's own controls stay. Nothing loads before a click (preload none); served from this site.
+interface Props {
+  src: string;
+  poster: string;
+  /** Shown on the slab before the first play, e.g. "1:54" */
+  duration: string;
+  label: string;
+  /** For the fallback link, e.g. "MP4, 13 MB" */
+  size: string;
+}
+
+const { src, poster, duration, label, size } = Astro.props;
+---
+
+<div class="reel mt-16 md:mt-24" data-reel>
+  <div class="relative border border-ink/15 bg-[#efefe9] [&:fullscreen]:flex [&:fullscreen]:items-center [&:fullscreen]:justify-center [&:fullscreen]:border-0" data-stage>
+    <video
+      class="block aspect-[16/10] w-full cursor-pointer [:fullscreen_&]:max-h-full [:fullscreen_&]:w-auto"
+      src={src}
+      poster={poster}
+      preload="none"
+      controls
+      playsinline
+      width="3200"
+      height="2000"
+      aria-label={label}
+      data-video
+    >
+      <a href={src}>Download the showreel ({size})</a>
+    </video>
+
+    {/* Start / play again: the black slab, as the site's buttons */}
+    <button
+      type="button"
+      class="group absolute bottom-16 left-16 hidden items-center gap-12 bg-ink px-20 py-14 text-base font-bold leading-[1.4] whitespace-nowrap text-paper transition-colors hover:bg-accent focus-visible:bg-accent md:bottom-32 md:left-32 md:px-24 md:py-16"
+      data-start
+    >
+      <span data-start-label>Play the reel</span>
+      <span class="font-mono font-normal opacity-50" aria-hidden="true">{duration}</span>
+      <span class="font-mono font-normal opacity-50 transition-transform group-hover:translate-x-2" aria-hidden="true">▶</span>
+    </button>
+  </div>
+
+  {/* The control row: shown by the script, hidden without it */}
+  <div class="hidden grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-16 border-b border-ink py-12 md:grid-cols-[auto_minmax(0,1fr)_auto_auto] md:gap-24" data-bar>
+    <button type="button" class="label w-[6ch] text-left hover:text-accent focus-visible:text-accent" data-toggle>Play</button>
+    <input type="range" class="reel-range" min="0" max="1000" step="1" value="0" aria-label="Position in the showreel" data-seek />
+    <p class="font-mono text-[13px] tabular-nums text-grey" aria-live="off"><span data-now>0:00</span> / <span data-total>{duration}</span></p>
+    <button type="button" class="label hidden hover:text-accent focus-visible:text-accent md:block" data-full>Full screen</button>
+  </div>
+</div>
+
+<script>
+  const fmt = (s: number) => {
+    if (!Number.isFinite(s)) s = 0;
+    const m = Math.floor(s / 60);
+    return `${m}:${String(Math.floor(s % 60)).padStart(2, '0')}`;
+  };
+
+  for (const root of document.querySelectorAll<HTMLElement>('[data-reel]')) {
+    const q = <T extends Element>(sel: string) => root.querySelector<T>(sel)!;
+    const video = q<HTMLVideoElement>('[data-video]');
+    const stage = q<HTMLElement>('[data-stage]');
+    const start = q<HTMLButtonElement>('[data-start]');
+    const startLabel = q<HTMLElement>('[data-start-label]');
+    const bar = q<HTMLElement>('[data-bar]');
+    const toggle = q<HTMLButtonElement>('[data-toggle]');
+    const seek = q<HTMLInputElement>('[data-seek]');
+    const now = q<HTMLElement>('[data-now]');
+    const total = q<HTMLElement>('[data-total]');
+    const full = q<HTMLButtonElement>('[data-full]');
+
+    // Take over from the browser's controls
+    video.controls = false;
+    start.classList.replace('hidden', 'inline-flex');
+    bar.classList.replace('hidden', 'grid');
+
+    let scrubbing = false;
+    const play = () => void video.play();
+    const flip = () => (video.paused || video.ended ? play() : video.pause());
+    const paint = () => {
+      const p = video.duration ? video.currentTime / video.duration : 0;
+      if (!scrubbing) seek.value = String(Math.round(p * 1000));
+      seek.style.setProperty('--p', `${p * 100}%`);
+      now.textContent = fmt(video.currentTime);
+    };
+
+    start.addEventListener('click', play);
+    toggle.addEventListener('click', flip);
+    video.addEventListener('click', flip);
+
+    video.addEventListener('play', () => {
+      start.classList.replace('inline-flex', 'hidden');
+      toggle.textContent = 'Pause';
+    });
+    video.addEventListener('pause', () => (toggle.textContent = 'Play'));
+    video.addEventListener('ended', () => {
+      startLabel.textContent = 'Play again';
+      start.classList.replace('hidden', 'inline-flex');
+      start.focus({ preventScroll: true });
+    });
+    video.addEventListener('loadedmetadata', () => (total.textContent = fmt(video.duration)));
+    video.addEventListener('timeupdate', paint);
+
+    // Seeking: dragging moves the picture; with preload none the first seek also starts loading
+    seek.addEventListener('pointerdown', () => (scrubbing = true));
+    seek.addEventListener('pointerup', () => (scrubbing = false));
+    seek.addEventListener('input', () => {
+      const p = Number(seek.value) / 1000;
+      seek.style.setProperty('--p', `${p * 100}%`);
+      if (video.duration) {
+        video.currentTime = p * video.duration;
+      } else {
+        video.addEventListener('loadedmetadata', () => (video.currentTime = p * video.duration), { once: true });
+        video.load();
+      }
+    });
+
+    // Space or K plays and pauses while the player has focus (not on the slider, which uses the arrows)
+    root.addEventListener('keydown', (e) => {
+      if ((e.key === ' ' || e.key === 'k') && e.target !== seek && !(e.target instanceof HTMLButtonElement)) {
+        e.preventDefault();
+        flip();
+      }
+    });
+
+    full.addEventListener('click', () => {
+      if (document.fullscreenElement) return void document.exitFullscreen();
+      if (stage.requestFullscreen) void stage.requestFullscreen();
+      else (video as HTMLVideoElement & { webkitEnterFullscreen?: () => void }).webkitEnterFullscreen?.();
+    });
+    document.addEventListener('fullscreenchange', () => {
+      full.textContent = document.fullscreenElement === stage ? 'Exit full screen' : 'Full screen';
+    });
+  }
+</script>

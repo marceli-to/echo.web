@@ -193,6 +193,36 @@
   }
 }
 
+/* The showreel's progress line: hairline track, accent fill up to --p (set by the player), a square thumb */
+@utility reel-range {
+  @apply h-20 w-full cursor-pointer appearance-none bg-transparent;
+  &::-webkit-slider-runnable-track {
+    @apply h-2;
+    background: linear-gradient(to right, var(--color-accent) var(--p, 0%), color-mix(in oklab, var(--color-ink) 15%, transparent) var(--p, 0%));
+  }
+  &::-moz-range-track {
+    @apply h-2;
+    background: linear-gradient(to right, var(--color-accent) var(--p, 0%), color-mix(in oklab, var(--color-ink) 15%, transparent) var(--p, 0%));
+  }
+  &::-webkit-slider-thumb {
+    @apply -mt-5 size-12 appearance-none rounded-none border-0 bg-ink;
+  }
+  &::-moz-range-thumb {
+    @apply size-12 rounded-none border-0 bg-ink;
+  }
+  &:hover::-webkit-slider-thumb,
+  &:focus-visible::-webkit-slider-thumb {
+    @apply bg-accent;
+  }
+  &:hover::-moz-range-thumb,
+  &:focus-visible::-moz-range-thumb {
+    @apply bg-accent;
+  }
+  &:focus-visible {
+    @apply outline-none;
+  }
+}
+
 /* "event", "chat": where an answer points back to the original. Demo only, so not a real link */
 @utility source {
   @apply font-mono text-[0.85em] font-medium text-accent underline decoration-1 underline-offset-[0.2em];
