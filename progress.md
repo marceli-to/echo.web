@@ -6,6 +6,13 @@ Design: [Figma, page "Landing · Editorial (proposal)", frame 56:33](https://www
 
 ## Done
 
+- **2026-11-25 · Changelog 25 Nov** (another agent, `fd87b07`): first-launch setup, filter guide, assistant person search, opt-in updates. The privacy page and `llms.txt` mention the update check. Build checked.
+- **2026-11-25 · Showreel** (`ddaa561`, `7ce66ab`, `df81303`): an ink block under the hero that bleeds out like the privacy block, with "See it in two minutes" and "No sound". `public/video/echo-reel.mp4` is 12.8 MB, 3200×2000, 1:54, with no audio track. The poster is a frame at 3 s. `Reel.astro` is the site's own player: an ink slab to start, then a ruled row with Play/Pause, an accent progress line, the time and Full screen. Space or K plays and pauses, and `preload="none"` means nothing loads before a click. Without JS the browser's own controls show.
+- **2026-11-25 · Footer** in lower case: "© 2026 écho · made with ❤️ in zurich by kimiyu.ch".
+- **2026-11-24 · Assistants positioning** (`9afc3e7`, `26a812e`): an intro line ("écho finds it, your assistant does the thinking"), a first example from Claude Code ("What's next?"), and a FAQ / `llms.txt` entry "Does écho have its own AI?". Astro drops the space at a line break before a tag, so after editing that copy, check the built HTML for words run together.
+- **2026-11-24 · Assistants as a chat** (`479848e`): the question sits in an ink bubble on the right, then a "Searching …" pill, then the answer in a white bubble on the left.
+- **2026-11-24 · Update brief** (`35b3e83`, `ecbf0c8`): Files and Links sources, the `type:` filter, search that tolerates typos and spellings (Strasse/Straße), ↑↓, bulk archive/delete with Undo, source switches, the Agents setting (names only), mail marked as other people's words, a smaller index. "Changes only what you ask" replaces "read-only". Changelog entries for 23 and 24 Nov. Quick panel and To do are no longer mentioned in the changelog.
+
 - **2026-11-23 · Signal** (the app added it in `5d31fc4`): Sources list, FAQ "How does Signal work?" (Keychain prompt, disappearing messages left out), `llms.txt`, changelog entry.
 - **2026-11-22 · Website and MCP briefs, first pass** (`echo-website-brief.md`, `echo-mcp-direction.md`; the parts with no open questions):
   - Privacy wording: no blanket "nothing leaves your Mac" anywhere. The privacy statement is now "Your index stays on this Mac." The paragraph, privacy page and `llms.txt` say that results an assistant asks for go to its provider. New privacy point "AI only if you say so".
@@ -43,7 +50,7 @@ Design: [Figma, page "Landing · Editorial (proposal)", frame 56:33](https://www
   - Early-access email signup instead of the "Coming soon" button: which email tool? It needs a third party or a form handler, plus a privacy-page update.
   - Pricing: show early access CHF 59–69 / 1.0 CHF 99, or only "notify me"? Confirm before showing prices.
   - "The problem" section (quote in a PDF, change in WhatsApp, meeting in the calendar: five apps, no answer).
-  - Demo video of the two examples, recorded with demo data. Who records it?
   - Imprint in the footer.
   - Languages of the site: DE / FR as well as EN?
+- [ ] **Smaller showreel**: the user will supply one. Replace `public/video/echo-reel.mp4` and update `size` ("MP4, 13 MB") in `index.astro`.
 - [ ] Optional, later: dark mode (not in the design; ask first). Real download link once the app ships.
