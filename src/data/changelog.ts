@@ -11,6 +11,18 @@ export interface Entry {
 
 export const changelog: Entry[] = [
   {
+    date: '2026-11-25',
+    title: 'First-launch setup, a search guide and updates',
+    items: [
+      'A short setup the first time you open écho: what it does, which sources to read, how to turn on Full Disk Access (with a button to restart), and the first read with its progress.',
+      'Recent only shows filters for sources you’ve turned on and allowed.',
+      'An empty ⌘K field shows a guide to the filters, only those that can find something. from: and to: suggest names as you type.',
+      'Your assistant can look someone up and search everything from, to or with a person. When it asks for a mail, it gets the whole mail, quoted text included.',
+      'In a narrow window, the Recent filter bar wraps onto two lines and the lists stay in their column.',
+      'Updates: Settings → General → Updates can check once a day and install updates when you quit, and the app menu has Check for Updates…. Both are off until you turn them on.',
+    ],
+  },
+  {
     date: '2026-11-24',
     title: 'Files, links and better search',
     items: [

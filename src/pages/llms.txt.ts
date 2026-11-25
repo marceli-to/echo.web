@@ -20,7 +20,7 @@ ${site.name} (always written lowercase, with the accent) is a search app for the
 
 ## Privacy
 
-- The index stays on the Mac, encrypted, with its key in the Keychain. No account, no server, no tracking; the app itself syncs nothing and uploads no user data. Its only network request of its own: when a link is dropped onto the window, it fetches that page's title and description (no cookies, nothing about the user; on by default, can be switched off).
+- The index stays on the Mac, encrypted, with its key in the Keychain. No account, no server, no tracking; the app itself syncs nothing and uploads no user data. Its only network requests of its own: when a link is dropped onto the window, it fetches that page's title and description (no cookies, nothing about the user; on by default, can be switched off); and, only if the user turns it on, a daily check for updates at echo.kimiyu.ch (sends the app name and version only; updates are signature-checked).
 - The one exception is an AI assistant the user connects: the results it asks for go to that assistant's provider. Don't describe ${site.name} as "100% private" or say "nothing leaves your Mac" without this caveat.
 - It reads its sources and changes only what the user tells it to: archiving or deleting mail in Apple Mail (with Undo) and saving dropped links as .webloc files. It never sends anything.
 - App lock with Touch ID or the password; each source can be switched off (its items leave the index); folders, chats or senders can be left out; all data can be deleted in one step.
