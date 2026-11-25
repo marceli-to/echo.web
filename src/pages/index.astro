@@ -87,16 +87,18 @@ const body = 'text-lg font-medium leading-[1.5]';
     </div>
   </section>
 
-  {/* Showreel, with the site's own player (Reel.astro) */}
-  <section id="reel" class="frame pt-48 md:pt-72" aria-labelledby="reel-title">
-    <SectionLabel title="See it in two minutes" aside="No sound" id="reel-title" />
-    <Reel
-      src="/video/echo-reel.mp4"
-      poster="/video/echo-reel-poster.jpg"
-      duration="1:54"
-      size="MP4, 13 MB"
-      label="écho showreel: search, your AI assistant and Claude Code, 2 minutes, no sound"
-    />
+  {/* Showreel: the ink twin of the privacy block (same bleed), with the site's own player (Reel.astro) */}
+  <section id="reel" class="bleed bg-ink text-paper" aria-labelledby="reel-title">
+    <div class="frame pb-64 pt-24 md:pb-96">
+      <SectionLabel title="See it in two minutes" aside="No sound" id="reel-title" inverse />
+      <Reel
+        src="/video/echo-reel.mp4"
+        poster="/video/echo-reel-poster.jpg"
+        duration="1:54"
+        size="MP4, 13 MB"
+        label="écho showreel: search, your AI assistant and Claude Code, 2 minutes, no sound"
+      />
+    </div>
   </section>
 
   {/* 01 Search */}

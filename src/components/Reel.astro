@@ -1,5 +1,5 @@
 ---
-// The showreel with the site's own player: an ink slab over the still frame starts it, then a ruled
+// The showreel with the site's own player, set for the ink block on the home page: an ink slab over the still frame starts it, then a ruled
 // row under the video (Play/Pause, an accent progress line, the time, Full screen). Without script
 // the browser's own controls stay. Nothing loads before a click (preload none); served from this site.
 interface Props {
@@ -15,8 +15,8 @@ interface Props {
 const { src, poster, duration, label, size } = Astro.props;
 ---
 
-<div class="reel mt-16 md:mt-24" data-reel>
-  <div class="relative border border-ink/15 bg-[#efefe9] [&:fullscreen]:flex [&:fullscreen]:items-center [&:fullscreen]:justify-center [&:fullscreen]:border-0" data-stage>
+<div class="reel mt-24 md:mt-40" data-reel>
+  <div class="relative bg-[#efefe9] [&:fullscreen]:flex [&:fullscreen]:items-center [&:fullscreen]:justify-center [&:fullscreen]:border-0" data-stage>
     <video
       class="block aspect-[16/10] w-full cursor-pointer [:fullscreen_&]:max-h-full [:fullscreen_&]:w-auto"
       src={src}
@@ -45,10 +45,10 @@ const { src, poster, duration, label, size } = Astro.props;
   </div>
 
   {/* The control row: shown by the script, hidden without it */}
-  <div class="hidden grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-16 border-b border-ink py-12 md:grid-cols-[auto_minmax(0,1fr)_auto_auto] md:gap-24" data-bar>
+  <div class="hidden grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-16 border-b border-paper/35 py-12 md:grid-cols-[auto_minmax(0,1fr)_auto_auto] md:gap-24" data-bar>
     <button type="button" class="label w-[6ch] text-left hover:text-accent focus-visible:text-accent" data-toggle>Play</button>
     <input type="range" class="reel-range" min="0" max="1000" step="1" value="0" aria-label="Position in the showreel" data-seek />
-    <p class="font-mono text-[13px] tabular-nums text-grey" aria-live="off"><span data-now>0:00</span> / <span data-total>{duration}</span></p>
+    <p class="font-mono text-[13px] tabular-nums text-paper/70" aria-live="off"><span data-now>0:00</span> / <span data-total>{duration}</span></p>
     <button type="button" class="label hidden hover:text-accent focus-visible:text-accent md:block" data-full>Full screen</button>
   </div>
 </div>
